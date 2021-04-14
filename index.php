@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title>PPP Loan</title>
-<?php 
-require 'nav_top.php';
-?>
+        <?php 
+        require 'nav_top.php';
+        ?>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 bg-white p-4 rounded mt-5">
