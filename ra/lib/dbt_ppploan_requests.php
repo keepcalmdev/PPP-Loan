@@ -12,144 +12,109 @@ class Dbt_ppploan_requests extends Dbt_Base{
 	static function get_db_fields(){
 		$db_fields = array(
 			"id" => array(
-				"code" => "id", 
-				"title" => "id", 
+				"code" => "id",
+				"title" => "request id",
+				"type" => "int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY",
 				"show_in_admin" => true,
 				"default_value" => false
 			),
-			"name" => array(
-				"code" => "name", 
-				"title" => __("Name", "courtres"), 
+			"is_received_in_2020_2021" => array(
+				"code" => "is_received_in_2020_2021",
+				"title" => "Did you receive a PPP loan in 2020 or 2021?",
+                "type" => "boolean",
 				"show_in_admin" => true,
-				"default_value" => "New challenge"
+				"default_value" => false
 			),
-			"court_id" => array(
-				"code" => "court_id", 
-				"title" => __("Court Id", "courtres"), 
+			"business_legal_entity_type" => array(
+				"code" => "business_legal_entity_type",
+				"title" => "Business Legal Entity Type",
+                "type" => "varchar(256)",
+				"show_in_admin" => true,
+				"default_value" => false
+			),
+			"company_name" => array(
+				"code" => "company_name",
+				"title" => "Company Name",
+                "type" => "varchar(128)",
 				"show_in_admin" => false,
 				"default_value" => false
 			),
-			"piramid_id" => array(
-				"code" => "piramid_id", 
-				"title" => __("Piramid Id", "courtres"), 
+			"first_name" => array(
+				"code" => "first_name",
+				"title" => "First Name",
+                "type" => "varchar(128)",
 				"show_in_admin" => true,
 				"default_value" => false
 			),
-			"challenger_id" => array(
-				"code" => "challenger_id", 
-				"title" => __("Challenger", "courtres"), 
+			"last_name" => array(
+				"code" => "last_name",
+				"title" => "Last Name",
+                "type" => "varchar(128)",
 				"show_in_admin" => true,
 				"default_value" => false
 			),
-			"challenged_id" => array(
-				"code" => "challenged_id", 
-				"title" => __("Challenged", "courtres"), 
+			"email" => array(
+				"code" => "email",
+				"title" => "Email",
+                "type" => "varchar(128)",
 				"show_in_admin" => true,
 				"default_value" => false
 			),
-			"winner_id" => array(
-				"code" => "winner_id", 
-				"title" => __("Winner", "courtres"), 
+			"company_phone" => array(
+				"code" => "company_phone",
+				"title" => "Company Phone",
+                "type" => "varchar(20)",
 				"show_in_admin" => true,
 				"default_value" => false
 			),
-			"results" => array(
-				"code" => "winner_id", 
-				"title" => __("Results", "courtres"), 
-				"show_in_admin" => false,
-				"default_value" => false
-			),
-			"event_id" => array(
-				"code" => "event_id", 
-				"title" => __("Event", "courtres"), 
+			"mobile_phone" => array(
+				"code" => "mobile_phone",
+				"title" => "Mobile Phone",
+                "type" => "varchar(20)",
 				"show_in_admin" => true,
 				"default_value" => false
-			),
-			"status" => array(
-				"code" => "status", 
-				"title" => __("Status", "courtres"), 
-				"show_in_admin" => true,
-				"default_value" => "created"
-			),
-			"start_ts" => array(
-				"code" => "start_ts", 
-				"title" => __("Start", "courtres"), 
-				"show_in_admin" => true,
-				"default_value" => 0
-			),
-			"end_ts" => array(
-				"code" => "end_ts", 
-				"title" => __("End", "courtres"), 
-				"show_in_admin" => true,
-				"default_value" => 0
-			),
-			"is_active" => array(
-				"code" => "is_active", 
-				"title" => __("Active", "courtres"), 
-				"show_in_admin" => false,
-				"default_value" => true
-			),
-			"created_dt" => array(
-				"code" => "created_dt", 
-				"title" => __("Created date and time", "courtres"), 
-				"show_in_admin" => false,
-				"default_value" => false
-			),
-			"accepted_dt" => array(
-				"code" => "accepted_dt", 
-				"title" => __("Accepted date and time", "courtres"), 
-				"show_in_admin" => false,
-				"default_value" => false
-			),
-			"closed_dt" => array(
-				"code" => "closed_dt", 
-				"title" => __("Closed date and time", "courtres"), 
-				"show_in_admin" => false,
-				"default_value" => false
-			),
-			"modified_dt" => array(
-				"code" => "modified_dt", 
-				"title" => __("Modified date", "courtres"), 
-				"show_in_admin" => false,
-				"default_value" =>  false
 			),
 		);
 		return $db_fields;
 	}
 
+    /**
+     * create the table
+     */
 	static function create_table(){
-		global $wpdb;
-		$db_fields = self::get_db_fields();
-		$sql = sprintf(
-			"CREATE TABLE IF NOT EXISTS `%1\$s` (
-				`id` int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
-				`name` varchar(128) NOT NULL DEFAULT '%2\$s',
-				`piramid_id` int unsigned NOT NULL,
-				`court_id` mediumint(9),
-				`event_id` mediumint(9),
-				`challenger_id` bigint(20) NOT NULL,
-				`challenged_id` bigint(20) NOT NULL,
-				`winner_id` bigint(20),
-				`results` text,
-				`status` ENUM ('created', 'accepted', 'scheduled', 'played', 'closed') NOT NULL DEFAULT 'created',
-				`is_active` boolean  DEFAULT 1,
-				`start_ts` int unsigned,
-				`end_ts` int unsigned,
-				`created_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-				`accepted_dt` datetime,
-				`closed_dt` datetime,
-				`modified_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-				FOREIGN KEY (`piramid_id`) REFERENCES `%3\$s` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-				) ENGINE='InnoDB' %6\$s AUTO_INCREMENT=1;",
-				
-				self::get_table_name(),
-				$db_fields["name"]["default_value"],
-				Courtres_Entity_Piramid::get_table_name(),
-				$wpdb->prefix . 'courtres_courts',
-				$wpdb->prefix . 'courtres_events',
-				self::get_charset_collate()
-		);
-		$wpdb->query( $sql );
+        try{
+            $fields = self::get_db_fields();
+            $sql_fields = array();
+            foreach ($fields as $key => $field) {
+                $sql_fields[] = sprintf("`%s` %s", $field["code"], $field["type"]);
+            }
+            $sql = sprintf("CREATE TABLE IF NOT EXISTS `%s` (%s) COLLATE 'utf8_general_ci' AUTO_INCREMENT=1;",
+                self::get_table_name(), implode(", ", $sql_fields)
+            );
+            self::$pdo->exec($sql);
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
 	}
+
+    /**
+     * @param array $args = array(db_field_name => value,...)
+     * @return bool
+     */
+    public function insert(array $args){
+        $args = array_intersect_key($args, self::get_db_fields());
+        $fields = array_keys($args);
+        $sql = sprintf("INSERT INTO %s(%s) VALUES(:%s)", self::get_table_name(), implode(", ", $fields), implode(", :", $fields));
+        $stmt = self::$pdo->prepare($sql);
+        $stmt->execute($args);
+        if($stmt->error){
+//            $result = $stmt->errorInfo();
+            $result = false;
+        }else{
+            $result = true;
+        }
+        return $result;
+    }
 
 }

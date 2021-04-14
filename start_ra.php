@@ -7,7 +7,20 @@
 require 'nav_top.php';
 require_once 'ra/init.php';
 $ppploan = new Ra\Dbt_ppploan_requests();
+$res = $ppploan->insert(array(
+    "is_received_in_2020_2021" => true,
+    "company_name" => "cn1",
+    "first_name" => "fn1",
+    "last_name" => "ln1",
+    "last_name2" => "ln12",
+));
 ?>
+
+<style type="text/css" media="screen">
+    #first, #second, #second-b, #third{
+        display: block;
+    }
+</style>
 
  <div id="page-container">
    <div id="content-wrap">
@@ -45,9 +58,9 @@ $ppploan = new Ra\Dbt_ppploan_requests();
                                    <label  class="Label"><b>Did you receive a PPP loan in 2020 or 2021?</b>  (note the disaster loan is different than the PPP and does not impact your ability to get a PPP).
 </label>
 <br>
-<input type="radio" id="in_business" name="in_business" value="yes">
+<input type="radio" id="in_business" name="loan[is_received_in_2020_2021]" value="yes">
   <label for="in_business"> Yes </label>
-  <input type="radio" id="in_business" name="in_business" value="no">
+  <input type="radio" id="in_business" name="loan[is_received_in_2020_2021]" value="no">
   <label for="in_business"> No</label><br>
   
   <span style="font-size:12px; color:#646464; ">* Required Field</span>
@@ -56,7 +69,7 @@ $ppploan = new Ra\Dbt_ppploan_requests();
                              
                             <div id="Entity1-field_wrapper" class="womplyFormRow select-field_wrapper">
       <label id="Entity1Label" for="Entity" class="hope_label"><b>Business Legal Entity Type</b></label>
-      <select id="Entity1" name="Entity" class="form-control">
+      <select id="Entity1" name="loan[business_legal_entity_type]" class="form-control">
         <option value="" selected="" disabled="">* Required field</option>
       <option value="Sole proprietor">Sole proprietor</option><option value="Partnership">Partnership</option><option value="C-Corp">C-Corp</option><option value="S-Corp">S-Corp</option><option value="LLC">LLC</option><option value="Independent contractor">Independent contractor</option><option value="Eligible self-employed individual">Eligible self-employed individual</option><option value="501(c)(3) nonprofit">501(c)(3) nonprofit</option><option value="501(c)(19) veterans organization">501(c)(19) veterans organization</option><option value="Tribal business (sec. 31(b)(2)(C) of Small Business Act)">Tribal business (sec. 31(b)(2)(C) of Small Business Act)</option><option value="Self-employed Farmer">Self-employed Farmer</option><option value="Self-employed Farmer">Other</option></select>
     </div>
@@ -88,33 +101,33 @@ $ppploan = new Ra\Dbt_ppploan_requests();
 
                             <div class="form-group">
                                 <label for="name"><b>Company Name</b></label>
-                                <input type="text" class="form-control" name="company_name"  placeholder="Enter Company Name" id="name"><span style="font-size:12px; color:#646464; ">* Required Field</span>
+                                <input type="text" class="form-control" name="loan[company_name]"  placeholder="Enter Company Name" id="name"><span style="font-size:12px; color:#646464; ">* Required Field</span>
                                 <b class="form-text text-danger" id="nameError"></b>
                             </div>
                             <div class="form-group">
                                 <div class="row">
     <div class="col">
                                 <label for="first_name"><b>First Name</b></label>
-                                <input type="text" class="form-control" name="first_name"  placeholder="Enter First Name" id="name"><span style="font-size:12px; color:#646464; ">* Required Field</span>
+                                <input type="text" class="form-control" name="loan[first_name]"  placeholder="Enter First Name" id="name"><span style="font-size:12px; color:#646464; ">* Required Field</span>
                                 <b class="form-text text-danger" id="usernameError"></b>
                                 </div>  <div class="col">
                                  <label for="last_name"><b>Last Name</b></label>
-                                <input type="text" class="form-control" name="last_name"  placeholder="Enter Last Name" id="lastname"><span style="font-size:12px; color:#646464; ">* Required Field</span>
+                                <input type="text" class="form-control" name="loan[last_name]"  placeholder="Enter Last Name" id="lastname"><span style="font-size:12px; color:#646464; ">* Required Field</span>
                                 <b class="form-text text-danger" id="usernameError"></b>
 
                                 </div></div>
 
                                 <div class="row"><div class="col"><label id="Email1Label" for="Email" class="email"><b>Email</b></label>
-        <input id="email" class="Email form-control womplyTextField womplyRequired" name="email" maxlength="255" type="email" required><span style="font-size:12px; color:#646464; ">* Required Field</span> </div>
+        <input id="email" class="Email form-control womplyTextField womplyRequired" name="loan[email]" maxlength="255" type="email" required><span style="font-size:12px; color:#646464; ">* Required Field</span> </div>
 
 
-        <div class="col"><label id="Email1Label" for="phone" class="womplyLabel"><b>Company Phone</b></label> <input id="phone" class="phone form-control womplyTextField womplyRequired" name="phone" maxlength="255" type="phone" onfocus="" onblur="" onchange=""><span style="font-size:12px; color:#646464; ">* Required Field</span></div>
+        <div class="col"><label id="Email1Label" for="phone" class="womplyLabel"><b>Company Phone</b></label> <input id="phone" class="phone form-control womplyTextField womplyRequired" name="loan[company_phone]" maxlength="255" type="phone" onfocus="" onblur="" onchange=""><span style="font-size:12px; color:#646464; ">* Required Field</span></div>
 
         </div>
 
 
 
-<div><label id="Email1Label" for="phone" class="womplyLabel"><b>Mobile Phone</b></label> <input id="phone" class="phone form-control womplyTextField womplyRequired" name="phone" maxlength="255" type="phone" onfocus="" onblur="" onchange=""><span style="font-size:12px; color:#646464; "><a href="#">Send Verification Code</a>* Required Field</span></div>
+<div><label id="Email1Label" for="phone" class="womplyLabel"><b>Mobile Phone</b></label> <input id="phone" class="phone form-control womplyTextField womplyRequired" name="loan[mobile_phone]" maxlength="255" type="phone" onfocus="" onblur="" onchange=""><span style="font-size:12px; color:#646464; "><a href="#">Send Verification Code</a>* Required Field</span></div>
 
 
          
