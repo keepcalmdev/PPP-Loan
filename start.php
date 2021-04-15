@@ -371,9 +371,6 @@ $(document).ready ( function() {
 
 });</script>
 
-                        >
-
-
 
  <script>var photos2 = [];
 var data;
