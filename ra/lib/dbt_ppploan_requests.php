@@ -89,44 +89,4 @@ class Dbt_ppploan_requests extends Dbt_Base{
 		return $db_fields;
 	}
 
-    /**
-     * create the table
-     */
-	static function create_table(){
-        try{
-            $fields = self::get_db_fields();
-            $sql_fields = array();
-            foreach ($fields as $key => $field) {
-                $sql_fields[] = sprintf("`%s` %s", $field["code"], $field["type"]);
-            }
-            $sql = sprintf("CREATE TABLE IF NOT EXISTS `%s` (%s) COLLATE 'utf8_general_ci' AUTO_INCREMENT=1;",
-                self::get_table_name(), implode(", ", $sql_fields)
-            );
-            self::$pdo->exec($sql);
-
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-	}
-
-    /**
-     * @param array $args = array(db_field_name => value,...)
-     * @return array
-     */
-    public function insert(array $args){
-        $result = array("errors" => array(), "success" => false, "id"=>false);
-        $args = array_intersect_key($args, self::get_db_fields());
-        $fields = array_keys($args);
-        $sql = sprintf("INSERT INTO %s(%s) VALUES(:%s)", self::get_table_name(), implode(", ", $fields), implode(", :", $fields));
-        $stmt = self::$pdo->prepare($sql);
-        $stmt->execute($args);
-        if($stmt->error){
-            $result["errors"] = $stmt->errorInfo();
-        }else{
-            $result["success"] = true;
-            $result["id"] = self::$pdo->lastInsertId();
-        }
-        return $result;
-    }
-
 }

@@ -1,4 +1,16 @@
-16.04.21 13:04:14
-I:\WebOpenServer_5_3_7\domains\getppphope.local\form-dev\ra\lib\dbt_ppploan_requests.php lastInsertId()
-9
+16.04.21 16:04:49
+I:\WebOpenServer_5_3_7\domains\getppphope.local\form-dev\ra\lib\dbt_base.php $sql
+CREATE TABLE IF NOT EXISTS `ppploan_requests` (`id` int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, `is_received_in_2020_2021` boolean, `business_legal_entity_type` varchar(256), `schedule_f` varchar(128), `schedule_c` varchar(128), `company_name` varchar(128), `first_name` varchar(128), `last_name` varchar(128), `email` varchar(128), `company_phone` varchar(20), `mobile_phone` varchar(20)) ENGINE='InnoDB' COLLATE 'utf8_general_ci' AUTO_INCREMENT=1;
+-------------------
+16.04.21 16:04:49
+I:\WebOpenServer_5_3_7\domains\getppphope.local\form-dev\ra\lib\dbt_base.php $sql
+CREATE TABLE IF NOT EXISTS `ppploan_owners` (`id` int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, `request_id` int unsigned, `owner_fullname` varchar(128), `owner_title` varchar(128), `owner_percent` varchar(64), `owner_ssn` varchar(128), `owner_address` varchar(128), `owner_address_2` varchar(128), `owner_city` varchar(128), `owner_state` varchar(128), `owner_zip` varchar(64), FOREIGN KEY (`request_id`) REFERENCES `ppploan_requests` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE='InnoDB' COLLATE 'utf8_general_ci' AUTO_INCREMENT=1;
+-------------------
+16.04.21 16:04:38
+I:\WebOpenServer_5_3_7\domains\getppphope.local\form-dev\ra\lib\dbt_base.php $sql
+CREATE TABLE IF NOT EXISTS `ppploan_requests` (`id` int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, `is_received_in_2020_2021` boolean, `business_legal_entity_type` varchar(256), `schedule_f` varchar(128), `schedule_c` varchar(128), `company_name` varchar(128), `first_name` varchar(128), `last_name` varchar(128), `email` varchar(128), `company_phone` varchar(20), `mobile_phone` varchar(20)) ENGINE='InnoDB' COLLATE 'utf8_general_ci' AUTO_INCREMENT=1;
+-------------------
+16.04.21 16:04:38
+I:\WebOpenServer_5_3_7\domains\getppphope.local\form-dev\ra\lib\dbt_base.php $sql
+CREATE TABLE IF NOT EXISTS `ppploan_owners` (`id` int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, `request_id` int unsigned, `owner_fullname` varchar(128), `owner_title` varchar(128), `owner_percent` varchar(64), `owner_ssn` varchar(128), `owner_address` varchar(128), `owner_address_2` varchar(128), `owner_city` varchar(128), `owner_state` varchar(128), `owner_zip` varchar(64), FOREIGN KEY (`request_id`) REFERENCES `ppploan_requests` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE='InnoDB' COLLATE 'utf8_general_ci' AUTO_INCREMENT=1;
 -------------------

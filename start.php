@@ -11,8 +11,8 @@
 <?php
 require 'nav_top.php';
 require_once 'ra/init.php';
-$ppploan = new Ra\Dbt_ppploan_requests();
 $db_fields = $ppploan->get_db_fields();
+$db_fields_owners = $ppploan_owners->get_db_fields();
 ?>
 
 <style type="text/css" media="screen">
