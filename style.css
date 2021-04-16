@@ -4,11 +4,8 @@ body,html{color:#000;}
 
 
 
-#schedule-f{
-    display:none;
-}
 
-#schedule-c{
+#schedule-f, #ppp-1, #schedule-c{
     display:none;
 }
 
