@@ -1,4 +1,15 @@
 <?php
+ob_start();
+require_once 'ra/init.php';
+$response = array("request" => $_POST, "errors" => array(), "success" => false);
+$ppploan = new Ra\Dbt_ppploan_requests();
+$data = filter_var_array($_POST["data"], FILTER_SANITIZE_STRING);
+
+//fppr($data, __FILE__.' $data');
+
+//$res = $ppploan->insert($data);
+
+
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -41,7 +52,6 @@ Step 3: Save this file (/thankyou/index.php) and upload it together with your we
 $errors = array();
 
 // Remove $_COOKIE elements from $_REQUEST.
-
 if (count($_COOKIE)) {
     foreach (array_keys($_COOKIE) as $value) {
         unset($_REQUEST[$value]);
@@ -49,7 +59,6 @@ if (count($_COOKIE)) {
 }
 
 // Validate email field.
-
 if (isset($_REQUEST['email']) && !empty($_REQUEST['email'])) {
 
     $_REQUEST['email'] = trim($_REQUEST['email']);
@@ -78,7 +87,6 @@ if (isset($_REQUEST['email']) && !empty($_REQUEST['email'])) {
             }
         }
     }
-
 }
 
 // Check referrer is from same site.
@@ -91,24 +99,19 @@ if (!(isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER']) && str
 
 function recursive_array_check_blank($element_value)
 {
-
     global $set;
-
     if (!is_array($element_value)) {
         if (!empty($element_value)) {
             $set = 1;
         }
     } else {
-
         foreach ($element_value as $value) {
             if ($set) {
                 break;
             }
             recursive_array_check_blank($value);
         }
-
     }
-
 }
 
 recursive_array_check_blank($_REQUEST);
@@ -116,110 +119,104 @@ recursive_array_check_blank($_REQUEST);
 if (!$set) {
     $errors[] = "You cannot send a blank form";
 }
-
 unset($set);
 
 // Display any errors and exit if errors exist.
-
+$response["errors"] = $errors;
 if (count($errors)) {
     foreach ($errors as $value) {
         print "$value<br>";
     }
-    exit;
-}
+}else{
 
-if (!defined("PHP_EOL")) {
-    define("PHP_EOL", strtoupper(substr(PHP_OS, 0, 3) == "WIN") ? "\r\n" : "\n");
-}
-
-// Build message.
-
-function build_message($request_input)
-{
-    if (!isset($message_output)) {
-        $message_output = "";
+    if (!defined("PHP_EOL")) {
+        define("PHP_EOL", strtoupper(substr(PHP_OS, 0, 3) == "WIN") ? "\r\n" : "\n");
     }
-    if (!is_array($request_input)) {
-        $message_output = $request_input;
-    } else {
-        foreach ($request_input as $key => $value) {
-            if (!empty($value)) {
-                if (!is_numeric($key)) {
-                    $message_output .= str_replace("_", " ", ucfirst($key)) . ": " . build_message($value) . PHP_EOL . PHP_EOL;
-                } else {
-                    $message_output .= build_message($value) . ", ";
+
+    // Build message.
+    function build_message($request_input)
+    {
+        if (!isset($message_output)) {
+            $message_output = "";
+        }
+        if (!is_array($request_input)) {
+            $message_output = $request_input;
+        } else {
+            foreach ($request_input as $key => $value) {
+                if (!empty($value)) {
+                    if (!is_numeric($key)) {
+                        $message_output .= str_replace("_", " ", ucfirst($key)) . ": " . build_message($value) . PHP_EOL . PHP_EOL;
+                    } else {
+                        $message_output .= build_message($value) . ", ";
+                    }
                 }
             }
         }
-    }
-    return rtrim($message_output, ", ");
-}
-
-$message = build_message($_REQUEST);
-
-
-$message = $message . PHP_EOL . PHP_EOL . "-- " . PHP_EOL . "This information is confidential.";
-
-$message = stripslashes($message);
-
-$subject = stripslashes($subject);
-
-if ($from_email) {
-
-    $headers = "From: " . $from_email;
-    $headers .= PHP_EOL;
-    $headers .= "Reply-To: " . $_REQUEST['email'];
-} else {
-
-    $from_name = "";
-
-    if (isset($_REQUEST['name']) && !empty($_REQUEST['name'])) {
-        $from_name = stripslashes($_REQUEST['name']);
+        return rtrim($message_output, ", ");
     }
 
-    $headers = "From: {$from_name} <{$_REQUEST['email']}>";
+    $message = build_message($_REQUEST);
+    $message = $message . PHP_EOL . PHP_EOL . "-- " . PHP_EOL . "This information is confidential.";
+    $message = stripslashes($message);
+    $subject = stripslashes($subject);
+    if ($from_email) {
+        $headers = "From: " . $from_email;
+        $headers .= PHP_EOL;
+        $headers .= "Reply-To: " . $_REQUEST['email'];
+    } else {
+        $from_name = "";
+        if (isset($_REQUEST['name']) && !empty($_REQUEST['name'])) {
+            $from_name = stripslashes($_REQUEST['name']);
+        }
+        $headers = "From: {$from_name} <{$_REQUEST['email']}>";
+    }
+//    echo $message;
 
-}
-var_dump($message);
-// die();
-//mail($my_email, $subject, $message, $headers, $files);
+    try{
+        // we now send email by php mailer not php mail function.
+        //Server settings
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host = 'getppphope.com ';                     //Set the SMTP server to send through
+        $mail->Username = 'no-reply@getppphope.com';                     //SMTP username
+        $mail->Password = 'Myhiphop420!';                               //SMTP password
+        $mail->SMTPAuth = true;                                   //Enable SMTP authentication
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+        $mail->Port = 587;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
-// we now send email by php mailer not php mail function.
-//Server settings
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-$mail->isSMTP();                                            //Send using SMTP
-$mail->Host = 'getppphope.com ';                     //Set the SMTP server to send through
-$mail->Username = 'no-reply@getppphope.com';                     //SMTP username
-$mail->Password = 'Myhiphop420!';                               //SMTP password
-$mail->SMTPAuth = true;                                   //Enable SMTP authentication
-$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-$mail->Port = 587;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+        //Recipients
+        $mail->setFrom($from_email);
+        $mail->addAddress($my_email);     //Add a recipient
 
-//Recipients
-$mail->setFrom($from_email);
-$mail->addAddress($my_email);     //Add a recipient
+        //Attachments
+        foreach ($_FILES["photos"]["name"] as $k => $v) {
+            if(!empty($_FILES["photos"]["tmp_name"][$k])) {
+                @$mail->AddAttachment($_FILES["photos"]["tmp_name"][$k], $_FILES["photos"]["name"][$k]);
+            }
+        }
 
-//Attachments
+        //Content
+        $mail->isHTML(false); //Set email format to HTML
+        $mail->Subject = $subject;
+        $mail->Body = $message;
+        $mail->send();
 
-foreach ($_FILES["photos"]["name"] as $k => $v) {
-    if(!empty($_FILES["photos"]["tmp_name"][$k])) {
-        @$mail->AddAttachment($_FILES["photos"]["tmp_name"][$k], $_FILES["photos"]["name"][$k]);
+    }catch (Exception $e) {
+        $response["errors"][] = $e->getMessage();
     }
 }
-
-
-
-
-//Content
-$mail->isHTML(false);                                  //Set email format to HTML
-$mail->Subject = $subject;
-$mail->Body = $message;
-
-$mail->send();
 
 
 /*
 <b>Thank you <?php if(isset($_REQUEST['name'])){print stripslashes($_REQUEST['name']);} ?></b>
 */
+
+$response["html"] = ob_get_contents();
+ob_end_clean();
+
+$response["success"] = count($response["errors"]) ? false : true;
+
+header('Content-type: application/json');
+echo json_encode( $response );
 
 ?>

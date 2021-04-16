@@ -10,7 +10,16 @@
 
 <?php
 require 'nav_top.php';
+require_once 'ra/init.php';
+$ppploan = new Ra\Dbt_ppploan_requests();
+$db_fields = $ppploan->get_db_fields();
 ?>
+
+<style type="text/css" media="screen">
+    #first, #second, #second-b, #third{
+        display: block !important;
+    }
+</style>
 
 <div id="page-container">
     <div id="content-wrap">
@@ -49,22 +58,22 @@ require 'nav_top.php';
                             <b class="lead" id="progressText"> </b>
                         </div>
                     </div>
-                    <form id="form-data">
+                    <form id="form-data" method="post">
                         <div id="flow-1">
                             <h4 class="test-center  p-2 rounded text-dark">Company Information</h4>
                             <div id="Entity1-field_wrapper" class="womplyFormRow select-field_wrapper">
                                 <label class="Label"><b>Did you receive a PPP loan in 2020 or 2021?</b> (note the disaster loan is different than the PPP and does not impact your ability to get a PPP).
                                 </label>
                                 <br>
-                                <input type="radio" id="in_business" name="in_business" value="yes">
+                                <input type="radio" id="in_business" name="data[<?php echo $db_fields['is_received_in_2020_2021']['code']; ?>]" value="yes">
                                 <label for="in_business"> Yes </label>
-                                <input type="radio" id="in_business" name="in_business" value="no">
+                                <input type="radio" id="in_business" name="data[<?php echo $db_fields['is_received_in_2020_2021']['code']; ?>]"" value="no">
                                 <label for="in_business"> No</label><br>
                                 <span style="font-size:12px; color:#646464; ">* Required Field</span>
                             </div>
                             <div id="Entity1-field_wrapper" class="womplyFormRow select-field_wrapper">
                                 <label id="Entity1Label" for="Entity" class="hope_label"><b>Business Legal Entity Type</b></label>
-                                <select id="Entity1" name="Entity" class="form-control">
+                                <select id="Entity1" name="data[<?php echo $db_fields['business_legal_entity_type']['code']; ?>]" class="form-control">
                                     <option value="" selected="" disabled="">* Required field</option>
                                     <option value="Sole proprietor">Sole proprietor</option>
                                     <option value="Partnership">Partnership</option>
@@ -83,14 +92,14 @@ require 'nav_top.php';
                             <div id="schedule-f">
                                 <p>
                                     <label id="schedule-f-label">Please Specify what line 9 on Schedule F is:
-                                        <input name="schedule-f" type="text" class="form-control" placeholder="Schedule F" size="50" />
+                                        <input name="data[<?php echo $db_fields['schedule_f']['code']; ?>]" type="text" class="form-control" placeholder="Schedule F" size="50" />
                                     </label>
                                 </p>
                             </div>
                             <div id="schedule-c">
                                 <p>
                                     <label id="schedule-c-label">Please Specify what line 9 on Schedule C is:
-                                        <input name="schedule-c" type="text" class="form-control" placeholder="Schedule C" size="50" />
+                                        <input name="data[<?php echo $db_fields['schedule_c']['code']; ?>]" type="text" class="form-control" placeholder="Schedule C" size="50" />
                                     </label>
                                 </p>
                             </div>
@@ -101,29 +110,29 @@ require 'nav_top.php';
                         <div id="first">
                             <div class="form-group">
                                 <label for="name"><b>Company Name</b></label>
-                                <input type="text" class="form-control" name="company_name" placeholder="Enter Company Name" id="name"><span style="font-size:12px; color:#646464; ">* Required Field</span>
+                                <input type="text" class="form-control" name="data[<?php echo $db_fields['company_name']['code']; ?>]" placeholder="Enter Company Name" id="name"><span style="font-size:12px; color:#646464; ">* Required Field</span>
                                 <b class="form-text text-danger" id="nameError"></b>
                             </div>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col">
                                         <label for="first_name"><b>First Name</b></label>
-                                        <input type="text" class="form-control" name="first_name" placeholder="Enter First Name" id="name"><span style="font-size:12px; color:#646464; ">* Required Field</span>
+                                        <input type="text" class="form-control" name="data[<?php echo $db_fields['first_name']['code']; ?>]" placeholder="Enter First Name" id="name"><span style="font-size:12px; color:#646464; ">* Required Field</span>
                                         <b class="form-text text-danger" id="usernameError"></b>
                                     </div>
                                     <div class="col">
                                         <label for="last_name"><b>Last Name</b></label>
-                                        <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name" id="lastname"><span style="font-size:12px; color:#646464; ">* Required Field</span>
+                                        <input type="text" class="form-control" name="data[<?php echo $db_fields['last_name']['code']; ?>]" placeholder="Enter Last Name" id="lastname"><span style="font-size:12px; color:#646464; ">* Required Field</span>
                                         <b class="form-text text-danger" id="usernameError"></b>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col"><label id="Email1Label" for="Email" class="email"><b>Email</b></label>
-                                        <input id="email" class="Email form-control womplyTextField womplyRequired" name="email" maxlength="255" type="email" required><span style="font-size:12px; color:#646464; ">* Required Field</span>
+                                        <input id="email" class="Email form-control womplyTextField womplyRequired" name="data[<?php echo $db_fields['email']['code']; ?>]" maxlength="255" type="email" required><span style="font-size:12px; color:#646464; ">* Required Field</span>
                                     </div>
-                                    <div class="col"><label id="Email1Label" for="phone" class="womplyLabel"><b>Company Phone</b></label> <input id="phone" class="phone form-control womplyTextField womplyRequired" name="phone" maxlength="255" type="phone" onfocus="" onblur="" onchange=""><span style="font-size:12px; color:#646464; ">* Required Field</span></div>
+                                    <div class="col"><label id="Email1Label" for="phone" class="womplyLabel"><b>Company Phone</b></label> <input id="phone" class="phone form-control womplyTextField womplyRequired" name="data[<?php echo $db_fields['company_phone']['code']; ?>]" maxlength="255" type="phone" onfocus="" onblur="" onchange=""><span style="font-size:12px; color:#646464; ">* Required Field</span></div>
                                 </div>
-                                <div><label id="Email1Label" for="phone" class="womplyLabel"><b>Mobile Phone</b></label> <input id="phone" class="phone form-control womplyTextField womplyRequired" name="phone" maxlength="255" type="phone" onfocus="" onblur="" onchange=""><span style="font-size:12px; color:#646464; "><a href="#">Send Verification Code</a>* Required Field</span></div>
+                                <div><label id="Email1Label" for="phone" class="womplyLabel"><b>Mobile Phone</b></label> <input id="phone" class="phone form-control womplyTextField womplyRequired" name="data[<?php echo $db_fields['mobile_phone']['code']; ?>]" maxlength="255" type="phone" onfocus="" onblur="" onchange=""><span style="font-size:12px; color:#646464; "><a href="#">Send Verification Code</a>* Required Field</span></div>
                             </div>
                             <div class="form-group">
                                 <a href="#" class="btn btn-lg btn-primary col" id="next-1">Continue</a>
@@ -516,12 +525,11 @@ $(document).ready(function() {
         $('#progressBar').hide();
         $(".header-main").hide();
         $('#third').hide();
-
         $("#submitme").hide().fadeIn(2000);
-
 
         var form_el = $('#form-data')[0];
         var form_data = new FormData(form_el);
+
         $.each(photos, function(i, file) {
             form_data.append('photos[]' || 'photos2[]', file);
         });
@@ -534,13 +542,23 @@ $(document).ready(function() {
             processData: false, // Important!
             contentType: false,
             cache: false,
-            success: function(response) {
+            dataType: 'json',
+            success: function(responce) {
+
+                console.log(responce);
+
+                if(responce.success){
+                    $("#response").removeClass("bg-danger").addClass("bg-success").html("Submitted successfully!<br>");
+                }else{
+                    $("#response").removeClass("bg-success").addClass("bg-danger").html(responce.errors.join("<br>"));
+                }
+                $("#response").append("<pre>" + responce.html + "</pre>");
 
                 $("#submitme").hide();
                 $("#final").fadeIn(1000);
 
-                $("#response").html(response);
-                console.log(response);
+                $("#response").fadeIn(1000);
+
                 $('html, body').animate({
                     scrollTop: 0
                 }, 200);

@@ -1,9 +1,6 @@
 <?php
 namespace Ra;
 
-//if (!defined("ASSISTANTS_TABLE")){
-//    define ("ASSISTANTS_TABLE", $wpdb->users);
-//}
 
 class Dbt_ppploan_requests extends Dbt_Base{
 	
@@ -29,6 +26,20 @@ class Dbt_ppploan_requests extends Dbt_Base{
 				"code" => "business_legal_entity_type",
 				"title" => "Business Legal Entity Type",
                 "type" => "varchar(256)",
+				"show_in_admin" => true,
+				"default_value" => false
+			),
+			"schedule_f" => array(
+				"code" => "schedule_f",
+				"title" => "Please Specify what line 9 on Schedule F is",
+                "type" => "varchar(128)",
+				"show_in_admin" => true,
+				"default_value" => false
+			),
+			"schedule_c" => array(
+				"code" => "schedule_c",
+				"title" => "Please Specify what line 9 on Schedule C is",
+                "type" => "varchar(128)",
 				"show_in_admin" => true,
 				"default_value" => false
 			),
