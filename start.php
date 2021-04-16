@@ -31,9 +31,7 @@ $db_fields = $ppploan->get_db_fields();
                         </h2>
                         <p class="sub-text">Get your business back on track without impacting your credit score!</p>
                     </div>
-                    <div class="test-center text-dark bg-danger mb-2 p-2 rounded lead" id="response">
-                        error
-                    </div>
+                    <div id="response"></div>
                     <div class="test-center text-dark well mb-2 p-2 rounded lead" id="submitme">
                         <center><img src="send.gif" class="img-responsive">
                             <h3>Submitting Your Application, Do Not Close This Window...</h3>
@@ -526,6 +524,7 @@ $(document).ready(function() {
         $(".header-main").hide();
         $('#third').hide();
         $("#submitme").hide().fadeIn(2000);
+        $("#response").empty();
 
         var form_el = $('#form-data')[0];
         var form_data = new FormData(form_el);
@@ -544,15 +543,14 @@ $(document).ready(function() {
             cache: false,
             dataType: 'json',
             success: function(responce) {
-
-                console.log(responce);
-
-                if(responce.success){
-                    $("#response").removeClass("bg-danger").addClass("bg-success").html("Submitted successfully!<br>");
-                }else{
-                    $("#response").removeClass("bg-success").addClass("bg-danger").html(responce.errors.join("<br>"));
+                //console.log(responce);
+                if(responce.successes.length){
+                    $("#response").append('<div class="bg-success text-light mb-2 p-2 rounded lead">' + responce.successes.join("<br>") + '</div>');
                 }
-                $("#response").append("<pre>" + responce.html + "</pre>");
+                if(responce.errors.length){
+                    $("#response").append('<div class="bg-danger text-light bg-danger mb-2 p-2 rounded lead">' + responce.errors.join("<br>") + '</div>');
+                }
+                $("#response").append('<div class="bg-secondary text-light mb-2 p-2 rounded lead"><pre>' + responce.html + '</pre></div>');
 
                 $("#submitme").hide();
                 $("#final").fadeIn(1000);

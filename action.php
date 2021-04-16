@@ -1,13 +1,16 @@
 <?php
 ob_start();
 require_once 'ra/init.php';
-$response = array("request" => $_POST, "errors" => array(), "success" => false);
+$response = array("success" => false, "errors" => array(), "successes" => array());
 $ppploan = new Ra\Dbt_ppploan_requests();
 $data = filter_var_array($_POST["data"], FILTER_SANITIZE_STRING);
 
 //fppr($data, __FILE__.' $data');
 
-//$res = $ppploan->insert($data);
+$result = $ppploan->insert($data);
+if($result["success"]){
+    $response["successes"][] = "New PPP Loan request (id:" . $result["id"] . ") successfully created!";
+}
 
 
 //Import PHPMailer classes into the global namespace

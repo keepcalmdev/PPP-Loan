@@ -111,19 +111,20 @@ class Dbt_ppploan_requests extends Dbt_Base{
 
     /**
      * @param array $args = array(db_field_name => value,...)
-     * @return bool
+     * @return array
      */
     public function insert(array $args){
+        $result = array("errors" => array(), "success" => false, "id"=>false);
         $args = array_intersect_key($args, self::get_db_fields());
         $fields = array_keys($args);
         $sql = sprintf("INSERT INTO %s(%s) VALUES(:%s)", self::get_table_name(), implode(", ", $fields), implode(", :", $fields));
         $stmt = self::$pdo->prepare($sql);
         $stmt->execute($args);
         if($stmt->error){
-//            $result = $stmt->errorInfo();
-            $result = false;
+            $result["errors"] = $stmt->errorInfo();
         }else{
-            $result = true;
+            $result["success"] = true;
+            $result["id"] = self::$pdo->lastInsertId();
         }
         return $result;
     }
