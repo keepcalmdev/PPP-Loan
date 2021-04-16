@@ -24,7 +24,6 @@
                             <div class="boxed">
                                 <h4>Documents</h4>
                                 <br> No Files
-
                             </div>
                         </div>
                     </div>

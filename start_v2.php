@@ -92,12 +92,44 @@ button:hover {
 <form id="regForm" action="/action_page.php">
   <h1>Register:</h1>
   <!-- One "tab" for each step in the form: -->
-  <div class="tab">Name:
-    <p><input type="radio" id="in_business" class="formt-control" name="in_business" value="yes" ><label for="in_business"> Yes </label></p>
-    <p> <input type="radio" id="in_business" class="formt-control"  name="in_business" value="no"><label for="in_business"> No</label><label id="Entity1Label" for="Entity" class="womplyLabel"><b>Business Legal Entity Type</b></label>
+  <div class="tab"><h4 class="test-center  p-2 rounded text-dark">Company Information</h4>
+ 
+
+
+                             
+                               <div id="Entity1-field_wrapper" class="womplyFormRow select-field_wrapper">
+                                   <label  class="Label"><b>Did you receive a PPP loan in 2020 or 2021?</b>  (note the disaster loan is different than the PPP and does not impact your ability to get a PPP).
+</label>
+<br>
+<input type="radio" id="in_business" name="in_business" value="yes">
+  <label for="in_business"> Yes </label>
+  <input type="radio" id="in_business" name="in_business" value="no">
+  <label for="in_business"> No</label><br>
+  
+  <span style="font-size:12px; color:#646464; ">* Required Field</span>
+    </div>
+                             
+                             
+                            <div id="Entity1-field_wrapper" class="womplyFormRow select-field_wrapper">
+      <label id="Entity1Label" for="Entity" class="hope_label"><b>Business Legal Entity Type</b></label>
       <select id="Entity1" name="Entity" class="form-control">
         <option value="" selected="" disabled="">* Required field</option>
-      <option value="Sole proprietor">Sole proprietor</option><option value="Partnership">Partnership</option><option value="C-Corp">C-Corp</option><option value="S-Corp">S-Corp</option><option value="LLC">LLC</option><option value="Independent contractor">Independent contractor</option><option value="Eligible self-employed individual">Eligible self-employed individual</option><option value="501(c)(3) nonprofit">501(c)(3) nonprofit</option><option value="501(c)(19) veterans organization">501(c)(19) veterans organization</option><option value="Tribal business (sec. 31(b)(2)(C) of Small Business Act)">Tribal business (sec. 31(b)(2)(C) of Small Business Act)</option><option value="Other">Other</option></select></p>
+      <option value="Sole proprietor">Sole proprietor</option><option value="Partnership">Partnership</option><option value="C-Corp">C-Corp</option><option value="S-Corp">S-Corp</option><option value="LLC">LLC</option><option value="Independent contractor">Independent contractor</option><option value="Eligible self-employed individual">Eligible self-employed individual</option><option value="501(c)(3) nonprofit">501(c)(3) nonprofit</option><option value="501(c)(19) veterans organization">501(c)(19) veterans organization</option><option value="Tribal business (sec. 31(b)(2)(C) of Small Business Act)">Tribal business (sec. 31(b)(2)(C) of Small Business Act)</option><option value="Self-employed Farmer">Self-employed Farmer</option><option value="Self-employed Farmer">Other</option></select>
+    </div>
+<div id="schedule-f">
+    <p>
+        <label id="schedule-f-label">Please Specify what line 9 on Schedule F is:
+            <input name="schedule-f" type="text" class="form-control" placeholder="Schedule F" size="50" />
+        </label>
+    </p>
+</div>
+<div id="schedule-c">
+    <p>
+        <label id="schedule-c-label">Please Specify what line 9 on Schedule C is:
+            <input name="schedule-c" type="text" class="form-control" placeholder="Schedule C" size="50" />
+        </label>
+    </p>
+</div>
       
       <div class="file-upload-wrapper">
                               

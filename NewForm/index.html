@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>PPP Loan</title>
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__wrapper">
+        <nav class="header__nav">
+          <a class="header__logo" href="#">
+            <img src="" alt="logo">
+          </a>
+          <ul class="header__nav--list">
+            <li class="header__nav--item"><a class="header__nav--link active" href="#">Start Here</a></li>
+            <li class="header__nav--item"><a class="header__nav--link" href="#">Company Information</a></li>
+            <li class="header__nav--item"><a class="header__nav--link disabled" href="#">My Documents</a></li>
+          </ul>
+        </nav>
+        <form class="header__form">
+          <input class="form__control" type="search" placeholder="Username">
+          <input class="form__control" type="search" placeholder="Password">
+          <button class="header__btn" type="submit">Log in</button>
+        </form>
+        <button class="burger" id="burger" type="button">
+          <span>
+            <svg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'>
+              <path stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10'
+                d='M4 7h22M4 15h22M4 23h22' /></svg></span>
+        </button>
+      </div>
+      <div class="navbar">
+        <ul class="navbar__nav--list">
+          <li class="header__nav--item"><a class="header__nav--link active" href="#">Start Here</a></li>
+          <li class="header__nav--item"><a class="header__nav--link" href="#">Company Information</a></li>
+          <li class="header__nav--item"><a class="header__nav--link disabled" href="#">My Documents</a></li>
+        </ul>
+        <form class="navbar__form">
+          <input class="form__control" type="search" placeholder="Username">
+          <input class="form__control" type="search" placeholder="Password">
+          <button class="header__btn" type="submit">Log in</button>
+        </form>
+      </div>
+    </header>
+  
+    <main class="main">
+      <div class="container">
+        <div class="main__info">
+          <h2>See if you pre-qualify in less than 5 minutes</h2>
+          <p>Get your business back on track without impacting your credit score!</p>
+          <div class="progress">
+            <div class="progress__bar">
+  
+            </div>
+          </div>
+          <div class="final__block" id="final">
+            <p>
+              Success! Your Application Has Been Submitted.
+            </p>
+            <h3>What To Expect Next?</h3>
+            <p> Please have the following documents ready during a follow up phone call.</p>
+            <ul>
+              <li>Tax Documents</li>
+              <li>Copy of the filled out PDF attached below.
+                <a href="#">(click to open)</a>
+              </li>
+            </ul>
+            <div class="progress mb-3" style="height: 28px;">
+              <div class="progress-bar bg-success rounded" role="progressbar" style="width: 10%;" id="progressBar">
+                <b class="lead" id="progressText"> </b>
+              </div>
+            </div>
+          </div>
+          <form id="form-data" class="main__form">
+            <div class="flow-1">
+              <h4>Company Information</h4>
+              <p class="main__form--text">Did you receive a PPP loan in 2020 or 2021? <span>(note the disaster loan is
+                  different than the PPP and does not
+                  impact your ability to get a PPP).</span></p>
+              <div class="form__check">
+                <input type="radio" name="in_business" value="yes">
+                <label for="in_business">Yes</label>
+                <input type="radio" name="in_business" value="no">
+                <label for="in_business">No</label>
+                <p>* Required Field</p>
+              </div>
+              <div class="form__select">
+                <label for="Entity">Business Legal Entity Type</label>
+                <select name="Entity" class="form__select--control">
+                  <option value="" selected="" disabled="">* Required field</option>
+                  <option value="Sole proprietor">Sole proprietor</option>
+                  <option value="Partnership">Partnership</option>
+                  <option value="C-Corp">C-Corp</option>
+                  <option value="S-Corp">S-Corp</option>
+                  <option value="LLC">LLC</option>
+                  <option value="Independent contractor">Independent contractor</option>
+                  <option value="Eligible self-employed individual">Eligible self-employed individual</option>
+                  <option value="501(c)(3) nonprofit">501(c)(3) nonprofit</option>
+                  <option value="501(c)(19) veterans organization">501(c)(19) veterans organization</option>
+                  <option value="Tribal business (sec. 31(b)(2)(C) of Small Business Act)">Tribal business (sec.
+                    31(b)(2)(C)
+                    of Small Business Act)</option>
+                  <option value="Self-employed Farmer">Self-employed Farmer</option>
+                  <option value="Self-employed Farmer">Other</option>
+                </select>
+              </div>
+              <div id="schedule-f">
+                <p>
+                  <label id="schedule-f-label">Please Specify what line 9 on Schedule F is:
+                    <input name="schedule-f" type="text" class="form-control" placeholder="Schedule F" size="50" />
+                  </label>
+                </p>
+              </div>
+              <div id="schedule-c">
+                <p>
+                  <label id="schedule-c-label">Please Specify what line 9 on Schedule C is:
+                    <input name="schedule-c" type="text" class="form-control" placeholder="Schedule C" size="50" />
+                  </label>
+                </p>
+              </div>
+              <div class="main__form--btn">
+                <a class="btn-continue" href="#">Continue</a>
+              </div>
+            </div>
+            <div id="first">
+              <div class="form__group">
+                <label for="name">Company Name</label>
+                <input type="text" class="form__control" name="company_name" placeholder="Enter Company Name"
+                  id="name"><span class="form__required">* Required Field</span></span>
+              </div>
+              <div class="form__group">
+                <div class="form__group--wrapper">
+                  <div class="form__group--item">
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form__control" name="first_name" placeholder="Enter First Name"
+                      id="name"><span class="form__required">* Required Field</span>
+                  </div>
+                  <div class="form__group--item">
+                    <label for="first_name">Last Name</label>
+                    <input type="text" class="form__control" name="first_name" placeholder="Enter Last Name"
+                      id="name"><span class="form__required">* Required Field</span>
+                  </div>
+                </div>
+                <div class="form__group--wrapper">
+                  <div class="form__group--item">
+                    <label id="Email1Label" for="Email" class="email">Email</label>
+                    <input id="email" class="Email form__control" name="email" maxlength="255" type="email" required><span
+                      class="form__required">* Required
+                      Field</span>
+                  </div>
+                  <div class="form__group--item">
+                    <label id="Email1Label" for="phone"><b>Company
+                        Phone</b></label>
+                    <input id="phone" class="phone form__control" name="phone" maxlength="255" type="phone" required><span
+                      class="form__required">* Required Field</span>
+                  </div>
+                </div>
+                <div class="form__group">
+                  <label id="Email1Label" for="phone">Mobile Phone</label>
+                  <input id="phone" class="phone form__control" name="phone" maxlength="255" type="phone">
+                  <span class="form__required"><a class="form__required--link" href="#">Send
+                      Verification Code</a>* Required Field</span>
+                </div>
+              </div>
+              <div class="main__form--btn">
+                <a class="btn-continue" href="#">Continue</a>
+              </div>
+            </div>
+            <div id="second">
+              <h4>Company Information Cont.</h4>
+              <div class="form__group">
+                <div class="form__group--wrapper">
+                  <div class="form__group--item">
+                    <label for="payroll">Average Monthly Payroll?</label>
+                    <input type="text" class="form__control" name="payroll" placeholder="$" id="payroll">
+                  </div>
+                  <div class="form__group--item">
+                    <label for="num_employees">Number Of Employees?</label>
+                    <input type="text" class="form__control" name="num_employees" placeholder="#" id="num_employees">
+                  </div>
+                </div>
+                <div class="form__group">
+                  <label for="loan_amount">Loan Amount</label>
+                  <input type="text" disabled class="form__control" name="loan_amount" placeholder="$" id="loan_amount">
+                  <p class="loan__text">Note: This is only an estimated loan amount to get your application started.
+                    It does not impact your loan approval. We can help you calculate your exact loan amount later in the
+                    application process!</p>
+                </div>
+              </div>
+              <div class="form__group">
+                <label for="phone">What Is Your Business Industry?</label>
+                <p>If you don’t see an option that is perfect for your company, please select the closest option – you
+                  will provide the exact industry in the final application step.</p>
+                <select data-model="business" data-model-id="1154034" id="business_type_id" class="form__control ">
+                  <option disabled="" value="" class="grayColor">Select an option</option>
+                  <option value="18" class="">Administrative and Business Services</option>
+                  <option value="1" class="">Agriculture, Forestry, Fishing and Hunting</option>
+                  <option value="4" class="">Construction</option>
+                  <option value="19" class="">Education</option>
+                  <option value="14" class="">Financial Services</option>
+                  <option value="20" class="">Healthcare and Social Services</option>
+                  <option value="17" class="">Holding Companies</option>
+                  <option value="22" class="">Hospitality and Food Services</option>
+                  <option value="5" class="">Manufacturing</option>
+                  <option value="2" class="">Mining, Quarrying, and Oil &amp; Gas Extraction</option>
+                  <option value="23" class="">Other Services (Repair, Personal Care, and Religious &amp; Social
+                    Organizations)</option>
+                  <option value="16" class="">Professional Services</option>
+                  <option value="24" class="">Public Administration</option>
+                  <option value="15" class="">Real Estate</option>
+                  <option value="21" class="">Recreation, Entertainment, and Arts</option>
+                  <option value="10" class="">Retail Trade</option>
+                  <option value="13" class="">Technology, Publishing, and Telecom</option>
+                  <option value="11" class="">Transportation and Warehousing</option>
+                  <option value="3" class="">Utilities</option>
+                  <option value="8" class="">Wholesale Trade</option>
+                </select>
+              </div>
+              <hr>
+              <div class="form__group">
+                <h4 id="title-choose"> Choose which document you would like to use in order to determine your loan amount.
+                </h4>
+                <label>Tax Documents</label>
+                <p>
+                  Use your business tax return you most recently filed. This includes one of the following: 1040 Schedule
+                  C,
+                  1120-S, 1065, 1120, and 990 for non-profits. In addition, you may also need form 941/940
+                </p>
+              </div>
+              <div class="file-upload-wrapper">
+                <label class="file-field" data-max-files="6">
+                  <h4 class="drag-zone">Drop files to upload or</h4>
+                  <div class="btn col btn-success">Browse<input type="file" name="photos[]" class="hide_files" multiple>
+                  </div>
+                  <p><b>Allowed File Formats: </b>.jpg, .png and .pdf</p>
+                </label>
+                <div class="uploaded-files row"></div>
+              </div>
+              <div class="form__group">
+                <label>Articles of Incorporation</label>
+                <p>
+                  Please upload your articles of incorporation
+                </p>
+              </div>
+              <div class="file-upload-wrapper-2">
+                <label class="file-field-2" data-max-files="6">
+                  <h4 class="drag-zone">Drop files to upload or</h4>
+                  <div class="btn col btn-success">Browse<input type="file" name="photos[]" class="hide_files" multiple>
+                  </div>
+                  <p><b>Allowed File Formats: </b>.jpg, .png and .pdf</p>
+                </label>
+                <div class="uploaded-files row"></div>
+              </div>
+              <div class="form__group-prev-next">
+                <a href="#" class="btn btn-default" id="prev-2">Previous</a>
+                <a href="#" class="btn btn-primary" id="next-2-b">Continue</a>
+              </div>
+            </div>
+            <div id="second-b">
+              <h4>Business Ownership</h4>
+              <div class="form__group">
+                <label for="email">Who Owns Your Business?</label>
+                <input type="text" class="form__control" name="owner[]" placeholder="Owner Full Name" id="owner[]">
+              </div>
+              <div class="form__group">
+                <div class="form__group--wrapper">
+                  <div class="form__group--item"> <input type="text" class="form__control" name="title[]"
+                      placeholder="Title" id="title[]">
+                  </div>
+                  <div class="form__group--item"><input type="text" class="form__control" name="owner_percentage[]"
+                      placeholder="Owner %" id="owner_percentage[]"></div>
+                </div>
+                <div class="form__group">
+                  <input type="text" class="form__control" name="ein[]" placeholder="Owner SSN" id="ein[]">
+                  <p>Please enter owner SSN unless owner is a business then enter TIN</p>
+                </div>
+                <div class="form__group">
+                  <input type="text" class="form__control" name="address[]" placeholder="Address" id="address_own[]">
+                </div>
+                <div class="form__group">
+                  <input type="text" class="form__control" name="address_2[]" placeholder="Address 2"
+                    id="address_own_2[]">
+                </div>
+                <div class="form__group">
+                  <input type="text" class="form__control" name="owner_city[]" placeholder="City" id="owner_city[]">
+                </div>
+                <div class="form__group--wrapper">
+                  <div class="form__group--item"><br><input type="text" class="form__control" name="owner_state[]"
+                      placeholder="State" id="owner_state[]"></div>
+                  <div class="form__group--item"><br><input type="text" class="form__control" name="owner_zip[]"
+                      placeholder="Zip" id="owner_zip[]"></div>
+                </div>
+              </div>
+              <div class="appending_div"> </div>
+              <div class="add-owner">
+                <a href="#" class="btn btn-success add" id="add-owner">+ Add Owner</a>
+              </div>
+              <div class="form-group">
+                <a href="#" class="btn btn-default" id="prev-2-b">Previous</a>
+                <a href="#" class="btn btn-primary" id="next-3">Continue</a>
+              </div>
+            </div>
+            <div id="third">
+              <h4>Almost Done!</h4>
+              <div class="form__group">
+                <p>Is the Applicant or any owner of the Applicant presently suspended, debarred, proposed
+                  for debarment, declared ineligible,voluntarily excluded from participation in this transaction by any
+                  Federal department or agency, or presently involved in any bankruptcy?</p>
+                <select id="LoanNum2" name="q1" class="form__control">
+                  <option value="" selected="" disabled="true">* Required Field</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div class="form__group">
+                <p>Has the Applicant, any owner of the Applicant, or any business owned or controlled by
+                  any of them, ever obtained a direct orguaranteed loan from SBA or any other Federal agency (other than a
+                  Federal student loan made or guaranteed through a programadministered by the Department of Education)
+                  that is (a) currently delinquent, or (b) has defaulted in the last 7 years and caused a loss to the
+                  government?</p>
+                <select id="LoanNum3" name="q2" class="form__control">
+                  <option value="" selected="" disabled="true">* Required Field</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div class="form__group">
+                <p>Within the last 5 years, for any felony involving fraud, bribery, embezzlement, or a
+                  false statement in a loan application or anapplication for federal financial assistance, has the
+                  Applicant (if an individual) or any owner of the Applicant 1) been convicted; 2)pleaded guilty; 3)
+                  pleaded nolo contendere; or 4) commenced any form of parole or probation (including probation before
+                  judgment)?</p>
+                <select id="LoanNum4" name="q3" class="form__control">
+                  <option value="" selected="" disabled="true">* Required Field</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div class="form__group">
+                <p>Within the last 5 years, for any felony involving fraud, bribery, embezzlement, or a
+                  false statement in a loan application or anapplication for federal financial assistance, has the
+                  Applicant (if an individual) or any owner of the Applicant 1) been convicted; 2)pleaded guilty; 3)
+                  pleaded nolo contendere; or 4) commenced any form of parole or probation (including probation before
+                  judgment)?</p>
+                <select id="LoanNum5" name="q4" class="form__control">
+                  <option value="" selected="" disabled="true">* Required Field</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div class="form__group-prev-next">
+                <a href="#" class="btn btn-default" id="prev-3">Previous</a>
+                <button type="submit" id="submit" name="submit" class="btn btn-primary">Continue</button>
+              </div>
+            </div>
+            <div class="form__secure">
+              <img src="img/secure.png" alt="secure">
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  
+    <footer id="footer" class="footer">
+      <div class="container">
+        <div class="footer__wrapper">
+          <div class="footer__item">Copyright © 2021 Hope Financial Consulting, LLC. All Rights Reserved.</div>
+          <div class="footer__item"><a href="privacy.html" target="_blank">Privacy Policy</a> | <a href="terms.html"
+              target="_blank">Terms Of Use</a> | <a href="admin.php" target="_blank">Admin</a></div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
