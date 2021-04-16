@@ -91,26 +91,4 @@ class Dbt_ppploan_owners extends Dbt_Base{
 		return $db_fields;
 	}
 
-    /**
-     * create the table
-     */
-//    static function create_table(){
-//        try{
-//            $fields = self::get_child_db_fields();
-//            $sql_fields = array();
-//            foreach ($fields as $key => $field) {
-//                $sql_fields[] = sprintf("`%s` %s", $field["code"], $field["type"]);
-//            }
-//            $sql_foreign = ", FOREIGN KEY (`request_id`) REFERENCES `" . Dbt_ppploan_requests::get_table_name() . "` (`id`) ON DELETE CASCADE ON UPDATE CASCADE";
-//            $sql = sprintf(
-//                "CREATE TABLE IF NOT EXISTS `%s` (%s%s) ENGINE='InnoDB' COLLATE 'utf8_general_ci' AUTO_INCREMENT=1;",
-//                self::get_table_name(), implode(", ", $sql_fields), $sql_foreign
-//            );
-//            self::$pdo->exec($sql);
-//
-//        } catch (\PDOException $e) {
-//            echo $e->getMessage();
-//        }
-//    }
-
 }

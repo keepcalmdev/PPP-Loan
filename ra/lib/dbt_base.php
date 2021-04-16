@@ -22,6 +22,7 @@ class Dbt_base {
 
     /**
      * create the table
+     * @return result of $pdo->exec() or PDOException error messsage
      */
     static function create_table(){
         try{
@@ -35,11 +36,10 @@ class Dbt_base {
             $sql = sprintf("CREATE TABLE IF NOT EXISTS `%s` (%s%s) ENGINE='InnoDB' COLLATE 'utf8_general_ci' AUTO_INCREMENT=1;",
                 self::get_table_name(), implode(", ", $sql_fields), $sql_foreigns
             );
-//            fppr($sql, __FILE__.' $sql');
-            self::$pdo->exec($sql);
+            return self::$pdo->exec($sql);
 
         } catch (\PDOException $e) {
-            echo $e->getMessage();
+            return $e->getMessage();
         }
     }
 
@@ -52,13 +52,18 @@ class Dbt_base {
         $args = array_intersect_key($args, self::get_child_db_fields());
         $fields = array_keys($args);
         $sql = sprintf("INSERT INTO %s(%s) VALUES(:%s)", self::get_table_name(), implode(", ", $fields), implode(", :", $fields));
-        $stmt = self::$pdo->prepare($sql);
-        $stmt->execute($args);
-        if($stmt->error){
-            $result["errors"] = $stmt->errorInfo();
-        }else{
-            $result["success"] = true;
-            $result["id"] = self::$pdo->lastInsertId();
+
+        try {
+            $stmt = self::$pdo->prepare($sql);
+            $stmt->execute($args);
+            if ($stmt->error) {
+                $result["errors"][] = $stmt->errorInfo();
+            } else {
+                $result["success"] = true;
+                $result["id"] = self::$pdo->lastInsertId();
+            }
+        }catch (\PDOException $e) {
+            $result["errors"][] =  $e->getMessage();
         }
         return $result;
     }

@@ -85,6 +85,76 @@ class Dbt_ppploan_requests extends Dbt_Base{
 				"show_in_admin" => true,
 				"default_value" => false
 			),
+            "average_monthly_payroll" => array(
+                "code" => "average_monthly_payroll",
+                "title" => "Average Monthly Payroll",
+                "type" => "int unsigned",
+                "show_in_admin" => true,
+                "default_value" => false
+            ),
+            "number_employees" => array(
+                "code" => "number_employees",
+                "title" => "Number Of Employees",
+                "type" => "int unsigned",
+                "show_in_admin" => true,
+                "default_value" => false
+            ),
+            "loan_amount" => array(
+                "code" => "loan_amount",
+                "title" => "Loan Amount",
+                "type" => "int unsigned",
+                "show_in_admin" => true,
+                "default_value" => false
+            ),
+            "business_industry" => array(
+                "code" => "business_industry",
+                "title" => "What Is Your Business Industry",
+                "type" => "varchar(128)",
+                "show_in_admin" => true,
+                "default_value" => false
+            ),
+//            "tax_documents" => array(
+//                "code" => "tax_documents",
+//                "title" => "Tax Documents",
+//                "type" => "varchar",
+//                "show_in_admin" => true,
+//                "default_value" => false
+//            ),
+//            "articles_incorporation" => array(
+//                "code" => "articles_incorporation",
+//                "title" => "Articles of Incorporation",
+//                "type" => "varchar",
+//                "show_in_admin" => true,
+//                "default_value" => false
+//            ),
+            "question_1" => array(
+                "code" => "question_1",
+                "title" => "Is the Applicant or any owner of the Applicant presently suspended, debarred, proposed for debarment, declared ineligible,voluntarily excluded from participation in this transaction by any Federal department or agency, or presently involved in any bankruptcy?",
+                "type" => "boolean",
+                "show_in_admin" => true,
+                "default_value" => false
+            ),
+            "question_2" => array(
+                "code" => "question_2",
+                "title" => "Has the Applicant, any owner of the Applicant, or any business owned or controlled by any of them, ever obtained a direct orguaranteed loan from SBA or any other Federal agency (other than a Federal student loan made or guaranteed through a programadministered by the Department of Education) that is (a) currently delinquent, or (b) has defaulted in the last 7 years and caused a loss to the government?",
+                "type" => "boolean",
+                "show_in_admin" => true,
+                "default_value" => false
+            ),
+            "question_3" => array(
+                "code" => "question_3",
+                "title" => "Within the last 5 years, for any felony involving fraud, bribery, embezzlement, or a false statement in a loan application or anapplication for federal financial assistance, has the Applicant (if an individual) or any owner of the Applicant 1) been convicted; 2)pleaded guilty; 3) pleaded nolo contendere; or 4) commenced any form of parole or probation (including probation before judgment)?",
+                "type" => "boolean",
+                "show_in_admin" => true,
+                "default_value" => false
+            ),
+            "question_4" => array(
+                "code" => "question_4",
+                "title" => "Within the last 5 years, for any felony involving fraud, bribery, embezzlement, or a false statement in a loan application or anapplication for federal financial assistance, has the Applicant (if an individual) or any owner of the Applicant 1) been convicted; 2)pleaded guilty; 3) pleaded nolo contendere; or 4) commenced any form of parole or probation (including probation before judgment)?",
+                "type" => "boolean",
+                "show_in_admin" => true,
+                "default_value" => false
+            ),
 		);
 		return $db_fields;
 	}

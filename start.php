@@ -19,6 +19,9 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
     #first, #second, #second-b, #third{
         display: block !important;
     }
+    /*#second-b{*/
+        /*display: block !important;*/
+    /*}*/
 </style>
 
 <div id="page-container">
@@ -63,15 +66,15 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                                 <label class="Label"><b>Did you receive a PPP loan in 2020 or 2021?</b> (note the disaster loan is different than the PPP and does not impact your ability to get a PPP).
                                 </label>
                                 <br>
-                                <input type="radio" id="in_business" name="data[<?php echo $db_fields['is_received_in_2020_2021']['code']; ?>]" value="yes">
+                                <input type="radio" id="in_business" name="loan_request[<?php echo $db_fields['is_received_in_2020_2021']['code']; ?>]" value="1">
                                 <label for="in_business"> Yes </label>
-                                <input type="radio" id="in_business" name="data[<?php echo $db_fields['is_received_in_2020_2021']['code']; ?>]"" value="no">
+                                <input type="radio" id="in_business" name="loan_request[<?php echo $db_fields['is_received_in_2020_2021']['code']; ?>]"" value="0">
                                 <label for="in_business"> No</label><br>
                                 <span style="font-size:12px; color:#646464; ">* Required Field</span>
                             </div>
                             <div id="Entity1-field_wrapper" class="womplyFormRow select-field_wrapper">
                                 <label id="Entity1Label" for="Entity" class="hope_label"><b>Business Legal Entity Type</b></label>
-                                <select id="Entity1" name="data[<?php echo $db_fields['business_legal_entity_type']['code']; ?>]" class="form-control">
+                                <select id="Entity1" name="loan_request[<?php echo $db_fields['business_legal_entity_type']['code']; ?>]" class="form-control">
                                     <option value="" selected="" disabled="">* Required field</option>
                                     <option value="Sole proprietor">Sole proprietor</option>
                                     <option value="Partnership">Partnership</option>
@@ -90,14 +93,14 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                             <div id="schedule-f">
                                 <p>
                                     <label id="schedule-f-label">Please Specify what line 9 on Schedule F is:
-                                        <input name="data[<?php echo $db_fields['schedule_f']['code']; ?>]" type="text" class="form-control" placeholder="Schedule F" size="50" />
+                                        <input name="loan_request[<?php echo $db_fields['schedule_f']['code']; ?>]" type="text" class="form-control" placeholder="Schedule F" size="50" />
                                     </label>
                                 </p>
                             </div>
                             <div id="schedule-c">
                                 <p>
                                     <label id="schedule-c-label">Please Specify what line 9 on Schedule C is:
-                                        <input name="data[<?php echo $db_fields['schedule_c']['code']; ?>]" type="text" class="form-control" placeholder="Schedule C" size="50" />
+                                        <input name="loan_request[<?php echo $db_fields['schedule_c']['code']; ?>]" type="text" class="form-control" placeholder="Schedule C" size="50" />
                                     </label>
                                 </p>
                             </div>
@@ -108,29 +111,29 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                         <div id="first">
                             <div class="form-group">
                                 <label for="name"><b>Company Name</b></label>
-                                <input type="text" class="form-control" name="data[<?php echo $db_fields['company_name']['code']; ?>]" placeholder="Enter Company Name" id="name"><span style="font-size:12px; color:#646464; ">* Required Field</span>
+                                <input type="text" class="form-control" name="loan_request[<?php echo $db_fields['company_name']['code']; ?>]" placeholder="Enter Company Name" id="name"><span style="font-size:12px; color:#646464; ">* Required Field</span>
                                 <b class="form-text text-danger" id="nameError"></b>
                             </div>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col">
                                         <label for="first_name"><b>First Name</b></label>
-                                        <input type="text" class="form-control" name="data[<?php echo $db_fields['first_name']['code']; ?>]" placeholder="Enter First Name" id="name"><span style="font-size:12px; color:#646464; ">* Required Field</span>
+                                        <input type="text" class="form-control" name="loan_request[<?php echo $db_fields['first_name']['code']; ?>]" placeholder="Enter First Name" id="name"><span style="font-size:12px; color:#646464; ">* Required Field</span>
                                         <b class="form-text text-danger" id="usernameError"></b>
                                     </div>
                                     <div class="col">
                                         <label for="last_name"><b>Last Name</b></label>
-                                        <input type="text" class="form-control" name="data[<?php echo $db_fields['last_name']['code']; ?>]" placeholder="Enter Last Name" id="lastname"><span style="font-size:12px; color:#646464; ">* Required Field</span>
+                                        <input type="text" class="form-control" name="loan_request[<?php echo $db_fields['last_name']['code']; ?>]" placeholder="Enter Last Name" id="lastname"><span style="font-size:12px; color:#646464; ">* Required Field</span>
                                         <b class="form-text text-danger" id="usernameError"></b>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col"><label id="Email1Label" for="Email" class="email"><b>Email</b></label>
-                                        <input id="email" class="Email form-control womplyTextField womplyRequired" name="data[<?php echo $db_fields['email']['code']; ?>]" maxlength="255" type="email" required><span style="font-size:12px; color:#646464; ">* Required Field</span>
+                                        <input id="email" class="Email form-control womplyTextField womplyRequired" name="loan_request[<?php echo $db_fields['email']['code']; ?>]" maxlength="255" type="email" required><span style="font-size:12px; color:#646464; ">* Required Field</span>
                                     </div>
-                                    <div class="col"><label id="Email1Label" for="phone" class="womplyLabel"><b>Company Phone</b></label> <input id="phone" class="phone form-control womplyTextField womplyRequired" name="data[<?php echo $db_fields['company_phone']['code']; ?>]" maxlength="255" type="phone" onfocus="" onblur="" onchange=""><span style="font-size:12px; color:#646464; ">* Required Field</span></div>
+                                    <div class="col"><label id="Email1Label" for="phone" class="womplyLabel"><b>Company Phone</b></label> <input id="phone" class="phone form-control womplyTextField womplyRequired" name="loan_request[<?php echo $db_fields['company_phone']['code']; ?>]" maxlength="255" type="phone" onfocus="" onblur="" onchange=""><span style="font-size:12px; color:#646464; ">* Required Field</span></div>
                                 </div>
-                                <div><label id="Email1Label" for="phone" class="womplyLabel"><b>Mobile Phone</b></label> <input id="phone" class="phone form-control womplyTextField womplyRequired" name="data[<?php echo $db_fields['mobile_phone']['code']; ?>]" maxlength="255" type="phone" onfocus="" onblur="" onchange=""><span style="font-size:12px; color:#646464; "><a href="#">Send Verification Code</a>* Required Field</span></div>
+                                <div><label id="Email1Label" for="phone" class="womplyLabel"><b>Mobile Phone</b></label> <input id="phone" class="phone form-control womplyTextField womplyRequired" name="loan_request[<?php echo $db_fields['mobile_phone']['code']; ?>]" maxlength="255" type="phone" onfocus="" onblur="" onchange=""><span style="font-size:12px; color:#646464; "><a href="#">Send Verification Code</a>* Required Field</span></div>
                             </div>
                             <div class="form-group">
                                 <a href="#" class="btn btn-lg btn-primary col" id="next-1">Continue</a>
@@ -141,18 +144,18 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col"> <label for="payroll"><b>Average Monthly Payroll?</b></label>
-                                        <input type="text" class="form-control" name="payroll" placeholder="$" id="payroll">
+                                        <input type="text" class="form-control" name="loan_request[<?php echo $db_fields['average_monthly_payroll']['code']; ?>]" placeholder="$" id="payroll">
                                         <b></b>
                                     </div>
                                     <div class="col">
                                         <label for="num_employees"><b>Number Of Employees?</b></label>
-                                        <input type="text" class="form-control" name="num_employees" placeholder="#" id="num_employees">
+                                        <input type="text" class="form-control" name="loan_request[<?php echo $db_fields['number_employees']['code']; ?>]" placeholder="#" id="num_employees">
                                         <b></b>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="loan_amount"><b>Loan Amount</b></label>
-                                    <input type="text" disabled class="form-control loan_amount" name="loan_amount" placeholder="$" id="loan_amount">
+                                    <input type="text" disabled class="form-control loan_amount" name="loan_request[<?php echo $db_fields['loan_amount']['code']; ?>]" placeholder="$" id="loan_amount">
                                     <b class="form-text text-danger" id="loanAmountError"></b>
                                     <p style="font-size:14px;">Note: This is only an estimated loan amount to get your application started. It does not impact your loan approval. We can help you calculate your exact loan amount later in the application process!</p>
                                 </div>
@@ -160,28 +163,28 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                             <div class="form-group">
                                 <label for="phone"><b>What Is Your Business Industry?</b></label>
                                 <p>If you don’t see an option that is perfect for your company, please select the closest option – you will provide the exact industry in the final application step.</p>
-                                <select data-model="business" data-model-id="1154034" id="business_type_id" class="form-control ">
+                                <select data-model="business" data-model-id="1154034" id="business_type_id" class="form-control" name="loan_request[<?php echo $db_fields['business_industry']['code']; ?>]">
                                     <option disabled="" value="" class="grayColor">Select an option</option>
-                                    <option value="18" class="">Administrative and Business Services</option>
-                                    <option value="1" class="">Agriculture, Forestry, Fishing and Hunting</option>
-                                    <option value="4" class="">Construction</option>
-                                    <option value="19" class="">Education</option>
-                                    <option value="14" class="">Financial Services</option>
-                                    <option value="20" class="">Healthcare and Social Services</option>
-                                    <option value="17" class="">Holding Companies</option>
-                                    <option value="22" class="">Hospitality and Food Services</option>
-                                    <option value="5" class="">Manufacturing</option>
-                                    <option value="2" class="">Mining, Quarrying, and Oil &amp; Gas Extraction</option>
-                                    <option value="23" class="">Other Services (Repair, Personal Care, and Religious &amp; Social Organizations)</option>
-                                    <option value="16" class="">Professional Services</option>
-                                    <option value="24" class="">Public Administration</option>
-                                    <option value="15" class="">Real Estate</option>
-                                    <option value="21" class="">Recreation, Entertainment, and Arts</option>
-                                    <option value="10" class="">Retail Trade</option>
-                                    <option value="13" class="">Technology, Publishing, and Telecom</option>
-                                    <option value="11" class="">Transportation and Warehousing</option>
-                                    <option value="3" class="">Utilities</option>
-                                    <option value="8" class="">Wholesale Trade</option>
+                                    <option value="Administrative and Business Services" class="">Administrative and Business Services</option>
+                                    <option value="Agriculture, Forestry, Fishing and Hunting" class="">Agriculture, Forestry, Fishing and Hunting</option>
+                                    <option value="Construction" class="">Construction</option>
+                                    <option value="Education" class="">Education</option>
+                                    <option value="Financial Services" class="">Financial Services</option>
+                                    <option value="Healthcare and Social Services" class="">Healthcare and Social Services</option>
+                                    <option value="Holding Companies" class="">Holding Companies</option>
+                                    <option value="Hospitality and Food Services" class="">Hospitality and Food Services</option>
+                                    <option value="Manufacturing" class="">Manufacturing</option>
+                                    <option value="Mining, Quarrying, and Oil &amp; Gas Extraction" class="">Mining, Quarrying, and Oil &amp; Gas Extraction</option>
+                                    <option value="Other Services (Repair, Personal Care, and Religious &amp; Social Organizations)" class="">Other Services (Repair, Personal Care, and Religious &amp; Social Organizations)</option>
+                                    <option value="Professional Services" class="">Professional Services</option>
+                                    <option value="Public Administration" class="">Public Administration</option>
+                                    <option value="Real Estate" class="">Real Estate</option>
+                                    <option value="Recreation, Entertainment, and Arts" class="">Recreation, Entertainment, and Arts</option>
+                                    <option value="Retail Trade" class="">Retail Trade</option>
+                                    <option value="Technology, Publishing, and Telecom" class="">Technology, Publishing, and Telecom</option>
+                                    <option value="Transportation and Warehousing" class="">Transportation and Warehousing</option>
+                                    <option value="Utilities" class="">Utilities</option>
+                                    <option value="Wholesale Trade" class="">Wholesale Trade</option>
                                 </select>
                             </div>
                             <hr>
@@ -213,31 +216,32 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                                 <a href="#" class="btn btn-primary" id="next-2-b">Continue</a>
                             </div>
                         </div>
-                        <div id="second-b">
+
+                        <div id="second-b" class="business-ownership">
                             <h4 class="test-center  p-2 rounded text-dark">Business Ownership</h4>
                             <div class="form-group">
-                                <label for="email"><b>Who Owns Your Business?</b></label>
-                                <input type="text" class="form-control" name="owner[]" placeholder="Owner Full Name" id="owner[]">
+                                <label for="business_owner"><b>Who Owns Your Business?</b></label>
+                                <input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_title']['code']; ?>]" placeholder="Owner Full Name" id="business_owner">
                                 <b></b>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group business-owner-fields" data-owner_counter="0">
                                 <div class="row">
-                                    <div class="col"> <input type="text" class="form-control" name="title[]" placeholder="Title" id="title[]">
+                                    <div class="col"> <input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_title']['code']; ?>]" placeholder="Title">
                                     </div>
-                                    <div class="col"><input type="text" class="form-control" name="owner_percentage[]" placeholder="Owner %" id="owner_percentage[]"></div>
+                                    <div class="col"><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_percent']['code']; ?>]" placeholder="Owner %"></div>
                                 </div>
-                                <br><input type="text" class="form-control" name="ein[]" placeholder="Owner SSN" id="ein[]">
+                                <br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_ssn']['code']; ?>]" placeholder="Owner SSN">
                                 <p>Please enter owner SSN unless owner is a business then enter TIN</p>
-                                <input type="text" class="form-control" name="address[]" placeholder="Address" id="address_own[]">
-                                <br><input type="text" class="form-control" name="address_2[]" placeholder="Address 2" id="address_own_2[]">
-                                <br><input type="text" class="form-control" name="owner_city[]" placeholder="City" id="owner_city[]">
+                                <input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_address']['code']; ?>]" placeholder="Address">
+                                <br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_address_2']['code']; ?>]" placeholder="Address 2">
+                                <br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_city']['code']; ?>]" placeholder="City">
 
                                 <div class="row">
-                                    <div class="col"><br><input type="text" class="form-control" name="owner_state[]" placeholder="State" id="owner_state[]"></div>
-                                    <div class="col"><br><input type="text" class="form-control" name="owner_zip[]" placeholder="Zip" id="owner_zip[]"></div>
+                                    <div class="col"><br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_state']['code']; ?>]" placeholder="State"></div>
+                                    <div class="col"><br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_zip']['code']; ?>]" placeholder="Zip"></div>
                                 </div>
                             </div>
-                            <div class="appending_div"> </div>
+                            <div class="appending_div"></div>
                             <div class="add-owner">
                                 <br>
                                 <a href="#" class="btn btn-success add" id="add-owner">+ Add Owner</a>
@@ -248,38 +252,39 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                                 <a href="#" class="btn btn-primary" id="next-3">Continue</a>
                             </div>
                         </div>
+
                         <div id="third">
                             <h4 class="test-center  p-2 rounded text-dark">Almost Done!</h4>
                             <div class="form-group">
                                 <label for="email">Is the Applicant or any owner of the Applicant presently suspended, debarred, proposed for debarment, declared ineligible,voluntarily excluded from participation in this transaction by any Federal department or agency, or presently involved in any bankruptcy?</label>
-                                <select id="LoanNum2" name="q1" class="form-control">
+                                <select id="LoanNum2" name="loan_request[<?php echo $db_fields['question_1']['code']; ?>]" class="form-control">
                                     <option value="" selected="" disabled="true">* Required Field</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="email">Has the Applicant, any owner of the Applicant, or any business owned or controlled by any of them, ever obtained a direct orguaranteed loan from SBA or any other Federal agency (other than a Federal student loan made or guaranteed through a programadministered by the Department of Education) that is (a) currently delinquent, or (b) has defaulted in the last 7 years and caused a loss to the government?</label>
-                                <select id="LoanNum3" name="q2" class="form-control">
+                                <select id="LoanNum3" name="loan_request[<?php echo $db_fields['question_2']['code']; ?>]" class="form-control">
                                     <option value="" selected="" disabled="true">* Required Field</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="email">Within the last 5 years, for any felony involving fraud, bribery, embezzlement, or a false statement in a loan application or anapplication for federal financial assistance, has the Applicant (if an individual) or any owner of the Applicant 1) been convicted; 2)pleaded guilty; 3) pleaded nolo contendere; or 4) commenced any form of parole or probation (including probation before judgment)?</label>
-                                <select id="LoanNum4" name="q3" class="form-control">
+                                <select id="LoanNum4" name="loan_request[<?php echo $db_fields['question_3']['code']; ?>]" class="form-control">
                                     <option value="" selected="" disabled="true">* Required Field</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="email">Within the last 5 years, for any felony involving fraud, bribery, embezzlement, or a false statement in a loan application or anapplication for federal financial assistance, has the Applicant (if an individual) or any owner of the Applicant 1) been convicted; 2)pleaded guilty; 3) pleaded nolo contendere; or 4) commenced any form of parole or probation (including probation before judgment)?</label>
-                                <select id="LoanNum5" name="q4" class="form-control">
+                                <select id="LoanNum5" name="loan_request[<?php echo $db_fields['question_4']['code']; ?>]" class="form-control">
                                     <option value="" selected="" disabled="true">* Required Field</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -456,8 +461,16 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     $("#add-owner").on("click", function() {
+        var form_groups = $(this).closest(".business-ownership").find(".business-owner-fields");
+        var last_form_group = form_groups[ form_groups.length - 1 ];
+        var counter = parseInt($(last_form_group).data("owner_counter")) + 1;
+        var html = $(last_form_group).html();
+
+        var new_html = html.replace(/owners\[\d+\]/g, "owners[" + counter + "]");
+        var data_owner_counter = ' data-owner_counter="' + counter;
+
         $(".appending_div").append(
-            '<div ><div class="appending_div2"><hr><h4>Co-Owner</h4><div class="row" id="owners"><div class="col"><input type="text" class="form-control" name="title[]"  placeholder="Title" id="title[]"></div><div class="col"><input type="text" class="form-control" name="owner_percentage[]"  placeholder="Owner %" id="owner_percentage[]"></div></div><br><input type="text" class="form-control" name="ein[]"  placeholder="Business TIN (EIN, SSN, ITIN)" id="ein[]"> <br><input type="text" class="form-control" name="address[]"  placeholder="Address" id="address_own[]"><br><input type="text" class="form-control" name="address_2[]"  placeholder="Address 2" id="address_own_2[]"> <br><input type="text" class="form-control" name="owner_city[]"  placeholder="City" id="owner_city[]"><div class="row"><div class="col"><br><input type="text" class="form-control" name="owner_state[]"  placeholder="State" id="owner_state[]"></div><div class="col"><br><input type="text" class="form-control" name="owner_zip[]"  placeholder="Zip" id="owner_zip[]"></div></div> <br><a href="#" class="delete btn btn-danger">Remove</a></div></div>'
+        '<div><div class="appending_div2"><hr><h4>Co-Owner</h4><div class="form-group business-owner-fields"' + data_owner_counter + '">' + new_html + '</div><br><a href="#" class="delete btn btn-danger">Remove</a></div></div>'
         );
     });
     $(document).on("click", ".delete", function() {
@@ -543,7 +556,7 @@ $(document).ready(function() {
             cache: false,
             dataType: 'json',
             success: function(responce) {
-                //console.log(responce);
+                console.log(responce);
                 if(responce.successes.length){
                     $("#response").append('<div class="bg-success text-light mb-2 p-2 rounded lead">' + responce.successes.join("<br>") + '</div>');
                 }

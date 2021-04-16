@@ -2,14 +2,26 @@
 ob_start();
 require_once 'ra/init.php';
 $response = array("success" => false, "errors" => array(), "successes" => array());
-$ppploan = new Ra\Dbt_ppploan_requests();
-$data = filter_var_array($_POST["data"], FILTER_SANITIZE_STRING);
+$ppploan_request = new Ra\Dbt_ppploan_requests();
+$loan_request = filter_var_array($_POST["loan_request"], FILTER_SANITIZE_STRING);
 
-//fppr($data, __FILE__.' $data');
+$ppploan_owners = new Ra\Dbt_ppploan_owners();
+$business_owners = filter_var_array($_POST["owners"], FILTER_SANITIZE_STRING);
 
-$result = $ppploan->insert($data);
+$result = $ppploan->insert($loan_request);
 if($result["success"]){
     $response["successes"][] = "New PPP Loan request (id:" . $result["id"] . ") successfully created!";
+    foreach ($business_owners as &$owner) {
+        $owner["request_id"] = $result["id"];
+        $res = $ppploan_owners->insert($owner);
+        if($res["success"]){
+            $response["successes"][] = "New bussiness owner (id:" . $res["id"] . ") for PPP Loan request (id:" . $result["id"] . ") successfully created!";
+        }else{
+            $response["errors"][] = $res["errors"];
+        }
+    }
+}else{
+    $response["errors"][] = $result["errors"];
 }
 
 
@@ -125,7 +137,7 @@ if (!$set) {
 unset($set);
 
 // Display any errors and exit if errors exist.
-$response["errors"] = $errors;
+$response["errors"][] = $errors;
 if (count($errors)) {
     foreach ($errors as $value) {
         print "$value<br>";
