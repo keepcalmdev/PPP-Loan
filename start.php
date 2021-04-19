@@ -144,18 +144,18 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col"> <label for="payroll"><b>Average Monthly Payroll?</b></label>
-                                        <input type="text" class="form-control" name="loan_request[<?php echo $db_fields['average_monthly_payroll']['code']; ?>]" placeholder="$" id="payroll">
+                                        <input type="number" class="form-control" name="loan_request[<?php echo $db_fields['average_monthly_payroll']['code']; ?>]" placeholder="$" id="payroll">
                                         <b></b>
                                     </div>
                                     <div class="col">
                                         <label for="num_employees"><b>Number Of Employees?</b></label>
-                                        <input type="text" class="form-control" name="loan_request[<?php echo $db_fields['number_employees']['code']; ?>]" placeholder="#" id="num_employees">
+                                        <input type="number" class="form-control" name="loan_request[<?php echo $db_fields['number_employees']['code']; ?>]" placeholder="#" id="num_employees">
                                         <b></b>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="loan_amount"><b>Loan Amount</b></label>
-                                    <input type="text" disabled class="form-control loan_amount" name="loan_request[<?php echo $db_fields['loan_amount']['code']; ?>]" placeholder="$" id="loan_amount">
+                                    <input type="number" disabled class="form-control loan_amount" name="loan_request[<?php echo $db_fields['loan_amount']['code']; ?>]" placeholder="$" id="loan_amount">
                                     <b class="form-text text-danger" id="loanAmountError"></b>
                                     <p style="font-size:14px;">Note: This is only an estimated loan amount to get your application started. It does not impact your loan approval. We can help you calculate your exact loan amount later in the application process!</p>
                                 </div>

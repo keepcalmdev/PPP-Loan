@@ -60,7 +60,7 @@ class Dbt_ppploan_files extends Dbt_Base{
                 "default_value" => false
             ),
             "file" => array(
-                "code" => "src",
+                "code" => "file",
                 "title" => "Path to file",
                 "type" => "text",
                 "show_in_admin" => true,
@@ -115,8 +115,9 @@ class Dbt_ppploan_files extends Dbt_Base{
         }
         $finfo = new \finfo(FILEINFO_MIME_TYPE);
         $uploaded_files = array();
-        foreach ($form_files as $key => $files) {
-            $document_type = $key;
+        $db_fields = self::get_db_fields();
+        foreach ($form_files as $k => $files) {
+            $document_type = $k;
             foreach ($files["error"] as $key => $error) {
                 if ($error === 0) {
                     $tmp_file = $files["tmp_name"][$key];
@@ -125,13 +126,13 @@ class Dbt_ppploan_files extends Dbt_Base{
                         $name = sha1_file($tmp_file) . "." . $ext;
                         move_uploaded_file($tmp_file, ROOT_PATH . self::$uploads_dir . "/" . $name);
                         $uploaded_files[] = array(
-                            "name"          => $name,
-                            "src_name"      => filter_var($files["name"][$key], FILTER_SANITIZE_STRING),
-                            "type"          => $files["type"][$key],
-                            "size"          => $files["size"][$key],
-                            "src"           => ROOT_URL . self::$uploads_dir  . "/" . $name,
-                            "file"          => ROOT_PATH . self::$uploads_dir . "/" . $name,
-                            "document_type" => $document_type,
+                            $db_fields["name"]["code"] => $name,
+                            $db_fields["src_name"]["code"] => filter_var($files["name"][$key], FILTER_SANITIZE_STRING),
+                            $db_fields["type"]["code"] => $files["type"][$key],
+                            $db_fields["size"]["code"] => $files["size"][$key],
+                            $db_fields["src"]["code"] => ROOT_URL . self::$uploads_dir  . "/" . $name,
+                            $db_fields["file"]["code"] => ROOT_PATH . self::$uploads_dir . "/" . $name,
+                            $db_fields["document_type"]["code"] => $document_type,
                         );
                     }
                 }

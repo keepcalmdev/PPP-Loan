@@ -1,5 +1,6 @@
 <?php
 ob_start();
+
 require_once 'ra/init.php';
 $response = array("success" => false, "errors" => array(), "successes" => array());
 $ppploan_request = new Ra\Dbt_ppploan_requests();
@@ -10,26 +11,31 @@ $business_owners = filter_var_array($_POST["owners"], FILTER_SANITIZE_STRING);
 
 $ppploan_files = new Ra\Dbt_ppploan_files();
 $uploaded_files = $ppploan_files::upload($_FILES);
-fppr($uploaded_files, __FILE__.' $uploaded_files');
 
+$result = $ppploan->insert($loan_request);
+$request_id = $result["id"];
 
-
-
-//$result = $ppploan->insert($loan_request);
-//if($result["success"]){
-//    $response["successes"][] = "New PPP Loan request (id:" . $result["id"] . ") successfully created!";
-//    foreach ($business_owners as &$owner) {
-//        $owner["request_id"] = $result["id"];
-//        $res = $ppploan_owners->insert($owner);
-//        if($res["success"]){
-//            $response["successes"][] = "New bussiness owner (id:" . $res["id"] . ") for PPP Loan request (id:" . $result["id"] . ") successfully created!";
-//        }else{
-//            $response["errors"][] = $res["errors"];
-//        }
-//    }
-//}else{
-//    $response["errors"][] = $result["errors"];
-//}
+if($result["success"]){
+    $response["successes"][] = "New PPP Loan request (id:" . $result["id"] . ") successfully created!";
+    foreach ($business_owners as &$owner) {
+        $owner["request_id"] = $request_id;
+        $res = $ppploan_owners->insert($owner);
+        if(!$res["success"]){
+            $response["errors"][] = $res["errors"];
+        }
+    }
+    if($uploaded_files){
+        foreach ($uploaded_files as $uploaded_file) {
+            $uploaded_file["request_id"] = $request_id;
+            $res = $ppploan_files->insert($uploaded_file);
+            if(!$res["success"]){
+                $response["errors"][] = $res["errors"];
+            }
+        }
+    }
+}else{
+    $response["errors"][] = $result["errors"];
+}
 
 
 //Import PHPMailer classes into the global namespace
