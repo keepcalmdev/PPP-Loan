@@ -14,6 +14,7 @@ class Dbt_ppploan_files extends Dbt_Base{
 				"title" => "Bussiness owner id",
 				"type" => "int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"request_id" => array(
@@ -22,6 +23,7 @@ class Dbt_ppploan_files extends Dbt_Base{
 				"type" => "int unsigned",
 				"foreign" => "FOREIGN KEY (`request_id`) REFERENCES `" . Dbt_ppploan_requests::get_table_name() . "` (`id`) ON DELETE CASCADE ON UPDATE CASCADE",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
             "name" => array(
@@ -29,6 +31,7 @@ class Dbt_ppploan_files extends Dbt_Base{
                 "title" => "File Name",
                 "type" => "varchar(255)",
                 "show_in_admin" => true,
+                "show_in_front" => true,
                 "default_value" => false
             ),
             "type" => array(
@@ -36,6 +39,7 @@ class Dbt_ppploan_files extends Dbt_Base{
                 "title" => "File Type",
                 "type" => "varchar(64)",
                 "show_in_admin" => true,
+                "show_in_front" => true,
                 "default_value" => false
             ),
             "src_name" => array(
@@ -43,6 +47,7 @@ class Dbt_ppploan_files extends Dbt_Base{
                 "title" => "Source File Name",
                 "type" => "varchar(255)",
                 "show_in_admin" => true,
+                "show_in_front" => false,
                 "default_value" => false
             ),
             "size" => array(
@@ -50,6 +55,7 @@ class Dbt_ppploan_files extends Dbt_Base{
                 "title" => "File Size",
                 "type" => "int unsigned",
                 "show_in_admin" => true,
+                "show_in_front" => false,
                 "default_value" => false
             ),
             "src" => array(
@@ -57,6 +63,7 @@ class Dbt_ppploan_files extends Dbt_Base{
                 "title" => "File Source Url",
                 "type" => "text",
                 "show_in_admin" => true,
+                "show_in_front" => true,
                 "default_value" => false
             ),
             "file" => array(
@@ -64,6 +71,7 @@ class Dbt_ppploan_files extends Dbt_Base{
                 "title" => "Path to file",
                 "type" => "text",
                 "show_in_admin" => true,
+                "show_in_front" => false,
                 "default_value" => false
             ),
 			"document_type" => array(
@@ -71,6 +79,7 @@ class Dbt_ppploan_files extends Dbt_Base{
 				"title" => "Document Type",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 		);

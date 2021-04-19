@@ -13,6 +13,7 @@ class Dbt_ppploan_owners extends Dbt_Base{
 				"title" => "Bussiness owner id",
 				"type" => "int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"request_id" => array(
@@ -21,6 +22,7 @@ class Dbt_ppploan_owners extends Dbt_Base{
 				"type" => "int unsigned",
 				"foreign" => "FOREIGN KEY (`request_id`) REFERENCES `" . Dbt_ppploan_requests::get_table_name() . "` (`id`) ON DELETE CASCADE ON UPDATE CASCADE",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			// Owner info
@@ -29,6 +31,7 @@ class Dbt_ppploan_owners extends Dbt_Base{
 				"title" => "Owner Full Name",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"owner_title" => array(
@@ -36,6 +39,7 @@ class Dbt_ppploan_owners extends Dbt_Base{
 				"title" => "Title",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"owner_percent" => array(
@@ -43,6 +47,7 @@ class Dbt_ppploan_owners extends Dbt_Base{
 				"title" => "Owner %",
                 "type" => "varchar(64)",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"owner_ssn" => array(
@@ -50,6 +55,7 @@ class Dbt_ppploan_owners extends Dbt_Base{
 				"title" => "Owner SSN",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"owner_address" => array(
@@ -57,6 +63,7 @@ class Dbt_ppploan_owners extends Dbt_Base{
 				"title" => "Address",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"owner_address_2" => array(
@@ -64,6 +71,7 @@ class Dbt_ppploan_owners extends Dbt_Base{
 				"title" => "Address 2",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"owner_city" => array(
@@ -71,6 +79,7 @@ class Dbt_ppploan_owners extends Dbt_Base{
 				"title" => "City",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"owner_state" => array(
@@ -78,6 +87,7 @@ class Dbt_ppploan_owners extends Dbt_Base{
 				"title" => "State",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"owner_zip" => array(
@@ -85,6 +95,7 @@ class Dbt_ppploan_owners extends Dbt_Base{
 				"title" => "Zip",
                 "type" => "varchar(64)",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 		);

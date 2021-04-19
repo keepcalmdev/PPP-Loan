@@ -13,6 +13,8 @@ class Dbt_ppploan_requests extends Dbt_Base{
 				"title" => "request id",
 				"type" => "int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY",
 				"show_in_admin" => true,
+				"show_in_front" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"is_received_in_2020_2021" => array(
@@ -20,6 +22,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
 				"title" => "Did you receive a PPP loan in 2020 or 2021?",
                 "type" => "boolean",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"business_legal_entity_type" => array(
@@ -27,20 +30,23 @@ class Dbt_ppploan_requests extends Dbt_Base{
 				"title" => "Business Legal Entity Type",
                 "type" => "varchar(256)",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"schedule_f" => array(
 				"code" => "schedule_f",
 				"title" => "Please Specify what line 9 on Schedule F is",
                 "type" => "varchar(128)",
-				"show_in_admin" => true,
+				"show_in_admin" => false,
+                "show_in_front" => false,
 				"default_value" => false
 			),
 			"schedule_c" => array(
 				"code" => "schedule_c",
 				"title" => "Please Specify what line 9 on Schedule C is",
                 "type" => "varchar(128)",
-				"show_in_admin" => true,
+				"show_in_admin" => false,
+                "show_in_front" => false,
 				"default_value" => false
 			),
 			"company_name" => array(
@@ -48,6 +54,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
 				"title" => "Company Name",
                 "type" => "varchar(128)",
 				"show_in_admin" => false,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"first_name" => array(
@@ -55,6 +62,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
 				"title" => "First Name",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"last_name" => array(
@@ -62,6 +70,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
 				"title" => "Last Name",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"email" => array(
@@ -69,6 +78,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
 				"title" => "Email",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"company_phone" => array(
@@ -76,6 +86,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
 				"title" => "Company Phone",
                 "type" => "varchar(20)",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"mobile_phone" => array(
@@ -83,6 +94,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
 				"title" => "Mobile Phone",
                 "type" => "varchar(20)",
 				"show_in_admin" => true,
+                "show_in_front" => true,
 				"default_value" => false
 			),
             "average_monthly_payroll" => array(
@@ -90,6 +102,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
                 "title" => "Average Monthly Payroll",
                 "type" => "int unsigned",
                 "show_in_admin" => true,
+                "show_in_front" => true,
                 "default_value" => null
             ),
             "number_employees" => array(
@@ -97,6 +110,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
                 "title" => "Number Of Employees",
                 "type" => "int unsigned",
                 "show_in_admin" => true,
+                "show_in_front" => true,
                 "default_value" => null
             ),
             "loan_amount" => array(
@@ -104,6 +118,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
                 "title" => "Loan Amount",
                 "type" => "int unsigned",
                 "show_in_admin" => true,
+                "show_in_front" => true,
                 "default_value" => null
             ),
             "business_industry" => array(
@@ -111,6 +126,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
                 "title" => "What Is Your Business Industry",
                 "type" => "varchar(128)",
                 "show_in_admin" => true,
+                "show_in_front" => true,
                 "default_value" => false
             ),
             "question_1" => array(
@@ -118,6 +134,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
                 "title" => "Is the Applicant or any owner of the Applicant presently suspended, debarred, proposed for debarment, declared ineligible,voluntarily excluded from participation in this transaction by any Federal department or agency, or presently involved in any bankruptcy?",
                 "type" => "boolean",
                 "show_in_admin" => true,
+                "show_in_front" => true,
                 "default_value" => false
             ),
             "question_2" => array(
@@ -125,6 +142,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
                 "title" => "Has the Applicant, any owner of the Applicant, or any business owned or controlled by any of them, ever obtained a direct orguaranteed loan from SBA or any other Federal agency (other than a Federal student loan made or guaranteed through a programadministered by the Department of Education) that is (a) currently delinquent, or (b) has defaulted in the last 7 years and caused a loss to the government?",
                 "type" => "boolean",
                 "show_in_admin" => true,
+                "show_in_front" => true,
                 "default_value" => false
             ),
             "question_3" => array(
@@ -132,6 +150,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
                 "title" => "Within the last 5 years, for any felony involving fraud, bribery, embezzlement, or a false statement in a loan application or anapplication for federal financial assistance, has the Applicant (if an individual) or any owner of the Applicant 1) been convicted; 2)pleaded guilty; 3) pleaded nolo contendere; or 4) commenced any form of parole or probation (including probation before judgment)?",
                 "type" => "boolean",
                 "show_in_admin" => true,
+                "show_in_front" => true,
                 "default_value" => false
             ),
             "question_4" => array(
@@ -139,6 +158,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
                 "title" => "Within the last 5 years, for any felony involving fraud, bribery, embezzlement, or a false statement in a loan application or anapplication for federal financial assistance, has the Applicant (if an individual) or any owner of the Applicant 1) been convicted; 2)pleaded guilty; 3) pleaded nolo contendere; or 4) commenced any form of parole or probation (including probation before judgment)?",
                 "type" => "boolean",
                 "show_in_admin" => true,
+                "show_in_front" => true,
                 "default_value" => false
             ),
 		);
