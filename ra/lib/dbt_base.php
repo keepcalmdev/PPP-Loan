@@ -49,10 +49,15 @@ class Dbt_base {
      */
     public function insert(array $args){
         $result = array("errors" => array(), "success" => false, "id"=>false);
-        $args = array_intersect_key($args, self::get_child_db_fields());
+        $df_fields = self::get_child_db_fields();
+        $args = array_intersect_key($args, $df_fields);
         $fields = array_keys($args);
         $sql = sprintf("INSERT INTO %s(%s) VALUES(:%s)", self::get_table_name(), implode(", ", $fields), implode(", :", $fields));
-
+        foreach ($args as $key => $value) {
+            if(!$args[$key]){
+                $args[$key] = $df_fields[$key]["default_value"];
+            }
+        }
         try {
             $stmt = self::$pdo->prepare($sql);
             $stmt->execute($args);

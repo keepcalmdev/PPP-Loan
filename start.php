@@ -155,7 +155,7 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                                 </div>
                                 <div class="form-group">
                                     <label for="loan_amount"><b>Loan Amount</b></label>
-                                    <input type="number" disabled class="form-control loan_amount" name="loan_request[<?php echo $db_fields['loan_amount']['code']; ?>]" placeholder="$" id="loan_amount">
+                                    <input type="number" readonly class="form-control loan_amount" name="loan_request[<?php echo $db_fields['loan_amount']['code']; ?>]" placeholder="$" id="loan_amount">
                                     <b class="form-text text-danger" id="loanAmountError"></b>
                                     <p style="font-size:14px;">Note: This is only an estimated loan amount to get your application started. It does not impact your loan approval. We can help you calculate your exact loan amount later in the application process!</p>
                                 </div>

@@ -3,6 +3,7 @@ ob_start();
 
 require_once 'ra/init.php';
 $response = array("success" => false, "errors" => array(), "successes" => array());
+
 $ppploan_request = new Ra\Dbt_ppploan_requests();
 $loan_request = filter_var_array($_POST["loan_request"], FILTER_SANITIZE_STRING);
 

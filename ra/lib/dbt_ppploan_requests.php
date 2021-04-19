@@ -90,21 +90,21 @@ class Dbt_ppploan_requests extends Dbt_Base{
                 "title" => "Average Monthly Payroll",
                 "type" => "int unsigned",
                 "show_in_admin" => true,
-                "default_value" => false
+                "default_value" => null
             ),
             "number_employees" => array(
                 "code" => "number_employees",
                 "title" => "Number Of Employees",
                 "type" => "int unsigned",
                 "show_in_admin" => true,
-                "default_value" => false
+                "default_value" => null
             ),
             "loan_amount" => array(
                 "code" => "loan_amount",
                 "title" => "Loan Amount",
                 "type" => "int unsigned",
                 "show_in_admin" => true,
-                "default_value" => false
+                "default_value" => null
             ),
             "business_industry" => array(
                 "code" => "business_industry",
@@ -113,20 +113,6 @@ class Dbt_ppploan_requests extends Dbt_Base{
                 "show_in_admin" => true,
                 "default_value" => false
             ),
-//            "tax_documents" => array(
-//                "code" => "tax_documents",
-//                "title" => "Tax Documents",
-//                "type" => "varchar",
-//                "show_in_admin" => true,
-//                "default_value" => false
-//            ),
-//            "articles_incorporation" => array(
-//                "code" => "articles_incorporation",
-//                "title" => "Articles of Incorporation",
-//                "type" => "varchar",
-//                "show_in_admin" => true,
-//                "default_value" => false
-//            ),
             "question_1" => array(
                 "code" => "question_1",
                 "title" => "Is the Applicant or any owner of the Applicant presently suspended, debarred, proposed for debarment, declared ineligible,voluntarily excluded from participation in this transaction by any Federal department or agency, or presently involved in any bankruptcy?",
