@@ -1,0 +1,123 @@
+19.04.21 13:04:45
+I:\WebOpenServer_5_3_7\domains\getppphope.local\form-dev\action.php $_FILES
+Array
+(
+    [photos-1] => Array
+        (
+            [name] => Array
+                (
+                    [0] => IMG_9938.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => I:\WebOpenServer_5_3_7\userdata\php_upload\php34A1.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 745557
+                )
+
+        )
+
+    [photos-2] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [photos-test] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [photos1] => Array
+        (
+            [name] => Array
+                (
+                    [0] => IMG_9938.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => I:\WebOpenServer_5_3_7\userdata\php_upload\php34B1.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 745557
+                )
+
+        )
+
+)
+
+-------------------

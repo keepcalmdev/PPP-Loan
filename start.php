@@ -188,6 +188,11 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                                 </select>
                             </div>
                             <hr>
+
+
+
+
+
                             <h4> Choose which document you would like to use in order to determine your loan amount.</h4>
                             <label><b>Tax Documents</b><br>
                                 Use your business tax return you most recently filed. This includes one of the following: 1040 Schedule C, 1120-S, 1065, 1120, and 990 for non-profits. In addition, you may also need form 941/940.</label>
@@ -195,23 +200,32 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                                 <label class="file-field" data-max-files="6">
                                     <br>
                                     <h4 class="drag-zone">Drop files to upload or</h4>
-                                    <div class="btn col btn-success">Browse<input type="file" name="photos[]" class="hide_files" multiple></div>
+                                    <div class="btn col btn-success">Browse<input type="file" name="photos-1[]" class="hide_files" multiple autocomplete="off"></div>
                                     <p style="font-size:14px;"><b>Allowed File Formats: </b>.jpg, .png and .pdf</p>
                                 </label>
                                 <div class="uploaded-files row"></div>
                             </div>
+
+
+
                             <label><b>Articles of Incorporation</b><br>
                                 Please upload your articles of incorporation</label>
                             <div class="file-upload-wrapper-2">
                                 <label class="file-field-2" data-max-files="6">
                                     <br>
                                     <h4 class="drag-zone">Drop files to upload or</h4>
-                                    <div class="btn col btn-success">Browse<input type="file" name="photos-2[]" class="hide_files" multiple></div>
+                                    <div class="btn col btn-success">Browse<input type="file" name="photos-2[]" class="hide_files" multiple autocomplete="off"></div>
                                     <p style="font-size:14px;"><b>Allowed File Formats: </b>.jpg, .png and .pdf</p>
                                 </label>
                                 <div class="uploaded-files-2 row"></div>
                             </div>
+
+
+
+
                             <div class="form-group">
+                                <input type="file" name="photos-test[]" class="" multiple></div>
+
                                 <a href="#" class="btn btn-default" id="prev-2">Previous</a>
                                 <a href="#" class="btn btn-primary" id="next-2-b">Continue</a>
                             </div>
@@ -287,6 +301,7 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                                     <option value="0">No</option>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <a href="#" class="btn btn-default" id="prev-3">Previous</a>
                                 <button type="submit" id="submit" name="submit" class="btn btn-primary">Continue</button>
@@ -308,10 +323,11 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
 
 
 <script>
-    var photos = [];
-    var data;
+var photos1;
+var data;
 
 $(document).ready(function() {
+    photos1 = [];
     //Documnet Upload Script//
     function fileUpload(obj) {
         var dropZone = obj.find('.file-field');
@@ -329,9 +345,12 @@ $(document).ready(function() {
     function filesDropped(e) {
         highlightDropZone(e);
         var files = e.target.files || e.dataTransfer.files;
+
+        console.log("filesDropped files", files);
+
         for (var i = 0, file; file = files[i]; i++) {
             if (file.size <= 3000000 && (file.type == "application/pdf" || file.type == "image/jpg" || file.type == "image/jpeg" || file.type == "image/png")) {
-                photos.push(file);
+                photos1.push(file);
                 if (file.type == "application/pdf") {
                     var uploaded = filesBeen.prepend('<div><div><img src="pdf.png" style="max-height:80px;"></div><span></span></div>');
                     uploaded.find('span').click(function() {
@@ -367,7 +386,7 @@ $(document).ready(function() {
                 window.alert("The size of the file is more than 3Mb or format is not supported.");
             }
         }
-        console.log(photos);
+        console.log('filesDropped photos1', photos1);
     }
 
     dropZone.get(0).addEventListener('dragover', highlightDropZone);
@@ -383,10 +402,11 @@ $('.file-upload-wrapper').each(function() {
 </script>
 
 <script>
-    var photos2 = [];
-    var data;
+var photos2;
+var data;
 
 $(document).ready(function() {
+    photos2 = [];
     //Documnet Upload Script//
     function fileUpload2(obj) {
         var dropZone = obj.find('.file-field-2');
@@ -403,10 +423,13 @@ $(document).ready(function() {
 
     function filesDropped(e) {
         highlightDropZone(e);
-        var files = e.target.files || e.dataTransfer.files;
-        for (var i = 0, file; file = files[i]; i++) {
+        var files2 = e.target.files || e.dataTransfer.files;
+
+        console.log("filesDropped2 files2", files2);
+
+        for (var i = 0, file; file = files2[i]; i++) {
             if (file.size <= 3000000 && (file.type == "application/pdf" || file.type == "image/jpg" || file.type == "image/jpeg" || file.type == "image/png")) {
-                photos.push(file);
+                photos2.push(file);
                 if (file.type == "application/pdf") {
                     var uploaded = filesBeen.prepend('<div><div><img src="pdf.png" style="max-height:80px;"></div><span></span></div>');
                     uploaded.find('span').click(function() {
@@ -442,7 +465,7 @@ $(document).ready(function() {
                 window.alert("The size of the file is more than 3Mb or format is not supported.");
             }
         }
-        console.log(photos);
+        console.log('filesDropped2 photos2', photos2);
     }
     dropZone.get(0).addEventListener('dragover', highlightDropZone);
     dropZone.get(0).addEventListener('dragleave', highlightDropZone);
@@ -542,8 +565,13 @@ $(document).ready(function() {
         var form_el = $('#form-data')[0];
         var form_data = new FormData(form_el);
 
-        $.each(photos, function(i, file) {
-            form_data.append('photos[]' || 'photos2[]', file);
+        console.log("photos1", photos1);
+        $.each(photos1, function(i, file) {
+            form_data.append('photos1[]', file);
+        });
+        console.log("photos2", photos2);
+        $.each(photos2, function(i, file) {
+            form_data.append('photos2[]', file);
         });
 
         $.ajax({

@@ -8,21 +8,41 @@ $loan_request = filter_var_array($_POST["loan_request"], FILTER_SANITIZE_STRING)
 $ppploan_owners = new Ra\Dbt_ppploan_owners();
 $business_owners = filter_var_array($_POST["owners"], FILTER_SANITIZE_STRING);
 
-$result = $ppploan->insert($loan_request);
-if($result["success"]){
-    $response["successes"][] = "New PPP Loan request (id:" . $result["id"] . ") successfully created!";
-    foreach ($business_owners as &$owner) {
-        $owner["request_id"] = $result["id"];
-        $res = $ppploan_owners->insert($owner);
-        if($res["success"]){
-            $response["successes"][] = "New bussiness owner (id:" . $res["id"] . ") for PPP Loan request (id:" . $result["id"] . ") successfully created!";
-        }else{
-            $response["errors"][] = $res["errors"];
-        }
-    }
-}else{
-    $response["errors"][] = $result["errors"];
+$ppploan_files = new Ra\Dbt_ppploan_files();
+
+fppr($_FILES, __FILE__.' $_FILES');
+foreach ($_FILES as $files) {
+
 }
+
+$files = $_FILES["photos-test"];
+//fppr($files, __FILE__.' $files');
+
+foreach ($files["error"] as $key => $error) {
+    if ($error === 0) {
+        $tmp_name = $files["tmp_name"][$key];
+//        $name = sha1_file($tmp_name);
+        $name = basename($files["name"][$key]);
+        $res = move_uploaded_file($tmp_name, ROOT_PATH . $ppploan_files::$uploads_dir . "/" . $name);
+    }
+}
+
+
+//$result = $ppploan->insert($loan_request);
+//if($result["success"]){
+//    $response["successes"][] = "New PPP Loan request (id:" . $result["id"] . ") successfully created!";
+//    foreach ($business_owners as &$owner) {
+//        $owner["request_id"] = $result["id"];
+//        $res = $ppploan_owners->insert($owner);
+//        if($res["success"]){
+//            $response["successes"][] = "New bussiness owner (id:" . $res["id"] . ") for PPP Loan request (id:" . $result["id"] . ") successfully created!";
+//        }else{
+//            $response["errors"][] = $res["errors"];
+//        }
+//    }
+//}else{
+//    $response["errors"][] = $result["errors"];
+//}
 
 
 //Import PHPMailer classes into the global namespace
