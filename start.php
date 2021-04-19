@@ -10,7 +10,6 @@
 
 <?php
 require 'nav_top.php';
-require_once 'ra/init.php';
 $db_fields = $ppploan->get_db_fields();
 $db_fields_owners = $ppploan_owners->get_db_fields();
 ?>
@@ -713,6 +712,6 @@ $('#payroll, #num_employees').on("keyup change", function() {
 });
 
     </script>
-</body>
 
+</body>
 </html>
