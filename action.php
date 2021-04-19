@@ -9,23 +9,10 @@ $ppploan_owners = new Ra\Dbt_ppploan_owners();
 $business_owners = filter_var_array($_POST["owners"], FILTER_SANITIZE_STRING);
 
 $ppploan_files = new Ra\Dbt_ppploan_files();
+$uploaded_files = $ppploan_files::upload($_FILES);
+fppr($uploaded_files, __FILE__.' $uploaded_files');
 
-fppr($_FILES, __FILE__.' $_FILES');
-foreach ($_FILES as $files) {
 
-}
-
-$files = $_FILES["photos-test"];
-//fppr($files, __FILE__.' $files');
-
-foreach ($files["error"] as $key => $error) {
-    if ($error === 0) {
-        $tmp_name = $files["tmp_name"][$key];
-//        $name = sha1_file($tmp_name);
-        $name = basename($files["name"][$key]);
-        $res = move_uploaded_file($tmp_name, ROOT_PATH . $ppploan_files::$uploads_dir . "/" . $name);
-    }
-}
 
 
 //$result = $ppploan->insert($loan_request);
@@ -157,8 +144,8 @@ if (!$set) {
 unset($set);
 
 // Display any errors and exit if errors exist.
-$response["errors"][] = $errors;
 if (count($errors)) {
+    $response["errors"][] = $errors;
     foreach ($errors as $value) {
         print "$value<br>";
     }
@@ -224,10 +211,8 @@ if (count($errors)) {
         $mail->addAddress($my_email);     //Add a recipient
 
         //Attachments
-        foreach ($_FILES["photos"]["name"] as $k => $v) {
-            if(!empty($_FILES["photos"]["tmp_name"][$k])) {
-                @$mail->AddAttachment($_FILES["photos"]["tmp_name"][$k], $_FILES["photos"]["name"][$k]);
-            }
+        foreach ($uploaded_files as $k => $uploaded_file) {
+            @$mail->AddAttachment($uploaded_file["file"], $uploaded_file["src_name"]);
         }
 
         //Content

@@ -562,14 +562,14 @@ $(document).ready(function() {
             cache: false,
             dataType: 'json',
             success: function(responce) {
-                console.log(responce);
+//                console.log(responce);
                 if(responce.successes.length){
                     $("#response").append('<div class="bg-success text-light mb-2 p-2 rounded lead">' + responce.successes.join("<br>") + '</div>');
                 }
                 if(responce.errors.length){
                     $("#response").append('<div class="bg-danger text-light bg-danger mb-2 p-2 rounded lead">' + responce.errors.join("<br>") + '</div>');
                 }
-                $("#response").append('<div class="bg-secondary text-light mb-2 p-2 rounded lead"><pre>' + responce.html + '</pre></div>');
+                $("#response").append('<div class="bg-secondary text-light mb-2 p-2 rounded lead"><small>' + responce.html + '</small></div>');
 
                 $("#submitme").hide();
                 $("#final").fadeIn(1000);

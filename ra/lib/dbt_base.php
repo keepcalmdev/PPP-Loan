@@ -22,7 +22,7 @@ class Dbt_base {
 
     /**
      * create the table
-     * @return result of $pdo->exec() or PDOException error messsage
+     * @return $pdo->exec() or PDOException error messsage
      */
     static function create_table(){
         try{

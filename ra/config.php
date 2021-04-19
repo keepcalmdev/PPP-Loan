@@ -16,3 +16,5 @@ $DSN_OPTIONS = array(
 );
 
 define('ROOT_PATH', __DIR__ . '/..');
+define('HOME_URL', (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . "://" . $_SERVER['HTTP_HOST']);
+define('ROOT_URL', HOME_URL . '/form-dev');
