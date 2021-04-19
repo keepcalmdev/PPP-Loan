@@ -1,12 +1,12 @@
-19.04.21 13:04:45
+19.04.21 13:04:01
 I:\WebOpenServer_5_3_7\domains\getppphope.local\form-dev\action.php $_FILES
 Array
 (
-    [photos-1] => Array
+    [tax_documents] => Array
         (
             [name] => Array
                 (
-                    [0] => IMG_9938.jpg
+                    [0] => myAvatar-4eshCat_100x100.jpg
                 )
 
             [type] => Array
@@ -16,7 +16,7 @@ Array
 
             [tmp_name] => Array
                 (
-                    [0] => I:\WebOpenServer_5_3_7\userdata\php_upload\php34A1.tmp
+                    [0] => I:\WebOpenServer_5_3_7\userdata\php_upload\phpBB5F.tmp
                 )
 
             [error] => Array
@@ -26,41 +26,140 @@ Array
 
             [size] => Array
                 (
-                    [0] => 745557
+                    [0] => 35479
                 )
 
         )
 
-    [photos-2] => Array
+    [articles_incorporation] => Array
         (
             [name] => Array
                 (
-                    [0] => 
+                    [0] => IMG_9938-300.jpg
                 )
 
             [type] => Array
                 (
-                    [0] => 
+                    [0] => image/jpeg
                 )
 
             [tmp_name] => Array
                 (
-                    [0] => 
+                    [0] => I:\WebOpenServer_5_3_7\userdata\php_upload\phpBB60.tmp
                 )
 
             [error] => Array
                 (
-                    [0] => 4
+                    [0] => 0
                 )
 
             [size] => Array
                 (
-                    [0] => 0
+                    [0] => 82231
                 )
 
         )
 
-    [photos-test] => Array
+    [photos1] => Array
+        (
+            [name] => Array
+                (
+                    [0] => IMG_9931-200x200.jpg
+                    [1] => myAvatar-4eshCat_100x100.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => I:\WebOpenServer_5_3_7\userdata\php_upload\phpBB61.tmp
+                    [1] => I:\WebOpenServer_5_3_7\userdata\php_upload\phpBB62.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 54349
+                    [1] => 35479
+                )
+
+        )
+
+    [photos2] => Array
+        (
+            [name] => Array
+                (
+                    [0] => IMG_9938-300.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => I:\WebOpenServer_5_3_7\userdata\php_upload\phpBB63.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 82231
+                )
+
+        )
+
+)
+
+-------------------
+19.04.21 13:04:52
+I:\WebOpenServer_5_3_7\domains\getppphope.local\form-dev\action.php $_FILES
+Array
+(
+    [tax_documents] => Array
+        (
+            [name] => Array
+                (
+                    [0] => myAvatar-4eshCat_100x100.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => I:\WebOpenServer_5_3_7\userdata\php_upload\php81AF.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 35479
+                )
+
+        )
+
+    [articles_incorporations] => Array
         (
             [name] => Array
                 (
@@ -93,7 +192,82 @@ Array
         (
             [name] => Array
                 (
-                    [0] => IMG_9938.jpg
+                    [0] => Leopard_100.jpg
+                    [1] => myAvatar-4eshCat_100x100.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => I:\WebOpenServer_5_3_7\userdata\php_upload\php81B0.tmp
+                    [1] => I:\WebOpenServer_5_3_7\userdata\php_upload\php81B1.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 26387
+                    [1] => 35479
+                )
+
+        )
+
+)
+
+-------------------
+19.04.21 13:04:08
+I:\WebOpenServer_5_3_7\domains\getppphope.local\form-dev\action.php $_FILES
+Array
+(
+    [tax_documents] => Array
+        (
+            [name] => Array
+                (
+                    [0] => IMG_9931-200x200.jpg
+                    [1] => IMG_9939.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => I:\WebOpenServer_5_3_7\userdata\php_upload\php29C3.tmp
+                    [1] => I:\WebOpenServer_5_3_7\userdata\php_upload\php29C4.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 54349
+                    [1] => 83282
+                )
+
+        )
+
+    [articles_incorporations] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Leopard_100.jpg
                 )
 
             [type] => Array
@@ -103,7 +277,7 @@ Array
 
             [tmp_name] => Array
                 (
-                    [0] => I:\WebOpenServer_5_3_7\userdata\php_upload\php34B1.tmp
+                    [0] => I:\WebOpenServer_5_3_7\userdata\php_upload\php29C5.tmp
                 )
 
             [error] => Array
@@ -113,7 +287,7 @@ Array
 
             [size] => Array
                 (
-                    [0] => 745557
+                    [0] => 26387
                 )
 
         )
