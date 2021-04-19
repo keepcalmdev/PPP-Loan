@@ -188,11 +188,6 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                                 </select>
                             </div>
                             <hr>
-
-
-
-
-
                             <h4> Choose which document you would like to use in order to determine your loan amount.</h4>
                             <label><b>Tax Documents</b><br>
                                 Use your business tax return you most recently filed. This includes one of the following: 1040 Schedule C, 1120-S, 1065, 1120, and 990 for non-profits. In addition, you may also need form 941/940.</label>
@@ -205,9 +200,6 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                                 </label>
                                 <div class="uploaded-files row"></div>
                             </div>
-
-
-
                             <label><b>Articles of Incorporation</b><br>
                                 Please upload your articles of incorporation</label>
                             <div class="file-upload-wrapper-2">
@@ -219,13 +211,7 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                                 </label>
                                 <div class="uploaded-files-2 row"></div>
                             </div>
-
-
-
-
                             <div class="form-group">
-                                <input type="file" name="photos-test[]" class="" multiple></div>
-
                                 <a href="#" class="btn btn-default" id="prev-2">Previous</a>
                                 <a href="#" class="btn btn-primary" id="next-2-b">Continue</a>
                             </div>
