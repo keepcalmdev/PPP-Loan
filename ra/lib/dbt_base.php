@@ -21,6 +21,7 @@ class Dbt_base {
         return static::get_db_fields();
     }
 
+
     /**
      * create the table
      * @return $pdo->exec() or PDOException error messsage
@@ -79,7 +80,15 @@ class Dbt_base {
      */
     static function get_by_ids( $ids = array() )
     {
-        $sql = sprintf( "SELECT * FROM  %s WHERE `id` IN(%s)", self::get_table_name(), implode(", ", $ids));
+        $db_fields = self::get_child_db_fields();
+        $select_fields = array();
+        foreach ($db_fields as $key => $field) {
+            if($field["show_in_front"]){
+                $select_fields[] = $field["code"];
+            }
+        }
+        $sql = sprintf( "SELECT %s FROM  %s WHERE `id` IN(%s)", implode(", ", $select_fields), self::get_table_name(), implode(", ", $ids));
+
         $items = self::$pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
         return $items;
     }
@@ -89,7 +98,14 @@ class Dbt_base {
      */
     static function get_by_request_ids( $ids = array() )
     {
-        $sql = sprintf( "SELECT * FROM  %s WHERE `request_id` IN(%s)", self::get_table_name(), implode(", ", $ids));
+        $db_fields = self::get_child_db_fields();
+        $select_fields = array();
+        foreach ($db_fields as $key => $field) {
+            if($field["show_in_front"]){
+                $select_fields[] = $field["code"];
+            }
+        }
+        $sql = sprintf( "SELECT %s FROM  %s WHERE `request_id` IN(%s)", implode(", ", $select_fields), self::get_table_name(), implode(", ", $ids));
         $items = self::$pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
         return $items;
     }
@@ -109,13 +125,16 @@ class Dbt_base {
      * @return array $items with request_id as keys or empty array
      */
     static function get_strings( array $items ){
+        $hidden_fields = array("id", "request_id");
         $new_items = array();
         foreach ($items as $k => $item) {
             $strs = array();
             foreach ($item as $key => $subitem) {
                 $strs2 = array();
                 foreach ($subitem as $key => $value) {
-                    $strs2[] = $key . ": <strong>" . $value . "</strong>";
+                    if(!in_array($key, $hidden_fields)){
+                        $strs2[] = "<small>" . $key . ": </small><strong>" . $value . "</strong>";
+                    }
                 }
                 $strs[] = implode(", ", $strs2);
             }

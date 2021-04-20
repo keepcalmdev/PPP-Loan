@@ -48,7 +48,6 @@ class SSP_ppploan extends \SSP {
         if($db_fgn_fields["owners"]["show_in_front"]){
             $owners = Dbt_ppploan_owners::arrange_by_request_id( Dbt_ppploan_owners::get_by_request_ids($request_ids) );
             $owners_strs = Dbt_ppploan_owners::get_strings($owners);
-            
         }else{
             $owners = false;
         }

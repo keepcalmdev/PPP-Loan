@@ -22,7 +22,7 @@ class Dbt_ppploan_owners extends Dbt_Base{
 				"type" => "int unsigned",
 				"foreign" => "FOREIGN KEY (`request_id`) REFERENCES `" . Dbt_ppploan_requests::get_table_name() . "` (`id`) ON DELETE CASCADE ON UPDATE CASCADE",
 				"show_in_admin" => true,
-                "show_in_front" => false,
+                "show_in_front" => true, // must be always true
 				"default_value" => null
 			),
 			// Owner info
