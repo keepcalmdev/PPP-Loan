@@ -122,9 +122,9 @@ class Dbt_base {
     }
 
     /**
-     * @return array $items with request_id as keys or empty array
+     * @return array with request_id as keys and with key/values pairs as strings
      */
-    static function get_strings( array $items ){
+    static function get_ceils( array $items ){
         $hidden_fields = array("id", "request_id");
         $new_items = array();
         foreach ($items as $k => $item) {

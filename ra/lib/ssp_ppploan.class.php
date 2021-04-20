@@ -47,7 +47,7 @@ class SSP_ppploan extends \SSP {
         $request_ids = array_column($out, "id");
         if($db_fgn_fields["owners"]["show_in_front"]){
             $owners = Dbt_ppploan_owners::arrange_by_request_id( Dbt_ppploan_owners::get_by_request_ids($request_ids) );
-            $owners_strs = Dbt_ppploan_owners::get_strings($owners);
+            $owners_ceils = Dbt_ppploan_owners::get_ceils($owners);
         }else{
             $owners = false;
         }
@@ -58,26 +58,28 @@ class SSP_ppploan extends \SSP {
         }
         if($db_fgn_fields["tax_documents"]["show_in_front"]) {
             $tax_documents = Dbt_ppploan_files::arrange_by_request_id(Dbt_ppploan_files::get_request_documents($request_ids, "tax_documents"));
+            $tax_ceils = Dbt_ppploan_files::get_ceils($tax_documents);
         }else{
             $tax_documents = false;
         }
         if($db_fgn_fields["articles_incorporations"]["show_in_front"]) {
             $articles_incorporations = Dbt_ppploan_files::arrange_by_request_id(Dbt_ppploan_files::get_request_documents($request_ids, "articles_incorporations"));
+            $articles_inc_ceils = Dbt_ppploan_files::get_ceils($articles_incorporations);
         }else{
             $articles_incorporations = false;
         }
         foreach ($out as &$row) {
             if($owners){
-                $row["owners"] = $owners_strs[ $row["id"] ];
+                $row["owners"] = $owners_ceils[ $row["id"] ];
             }
             if($files) {
                 $row["files"] = $files[$row["id"]];
             }
             if($tax_documents) {
-                $row["tax_documents"] = $tax_documents[$row["id"]];
+                $row["tax_documents"] = $tax_ceils[$row["id"]];
             }
             if($articles_incorporations) {
-                $row["articles_incorporations"] = $articles_incorporations[$row["id"]];
+                $row["articles_incorporations"] = $articles_inc_ceils[$row["id"]];
             }
         }
         return $out;

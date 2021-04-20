@@ -10,7 +10,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
 		$db_fields = array(
 			"id" => array(
 				"code" => "id",
-				"title" => "request id",
+				"title" => "id",
 				"type" => "int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY",
 				"show_in_admin" => true,
 				"show_in_front" => true,
@@ -173,7 +173,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
                 "title" => "Date Created",
                 "type" => "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP",
                 "show_in_admin" => true,
-                "show_in_front" => false,
+                "show_in_front" => true,
                 "default_value" => null
             ),
             "modified_dt" => array(

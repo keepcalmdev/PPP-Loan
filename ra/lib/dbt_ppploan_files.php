@@ -23,7 +23,7 @@ class Dbt_ppploan_files extends Dbt_Base{
 				"type" => "int unsigned",
 				"foreign" => "FOREIGN KEY (`request_id`) REFERENCES `" . Dbt_ppploan_requests::get_table_name() . "` (`id`) ON DELETE CASCADE ON UPDATE CASCADE",
 				"show_in_admin" => true,
-                "show_in_front" => false,
+                "show_in_front" => true, // must be always true
 				"default_value" => null
 			),
             "name" => array(
@@ -31,7 +31,7 @@ class Dbt_ppploan_files extends Dbt_Base{
                 "title" => "File Name",
                 "type" => "varchar(255)",
                 "show_in_admin" => true,
-                "show_in_front" => true,
+                "show_in_front" => false,
                 "default_value" => false
             ),
             "type" => array(
@@ -39,7 +39,7 @@ class Dbt_ppploan_files extends Dbt_Base{
                 "title" => "File Type",
                 "type" => "varchar(64)",
                 "show_in_admin" => true,
-                "show_in_front" => true,
+                "show_in_front" => false,
                 "default_value" => false
             ),
             "src_name" => array(
@@ -47,7 +47,7 @@ class Dbt_ppploan_files extends Dbt_Base{
                 "title" => "Source File Name",
                 "type" => "varchar(255)",
                 "show_in_admin" => true,
-                "show_in_front" => false,
+                "show_in_front" => true,
                 "default_value" => false
             ),
             "size" => array(
@@ -95,7 +95,7 @@ class Dbt_ppploan_files extends Dbt_Base{
 				"title" => "Date Created",
                 "type" => "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP",
 				"show_in_admin" => true,
-                "show_in_front" => true,
+                "show_in_front" => false,
 				"default_value" => null
 			),
 			"modified_dt" => array(
@@ -180,9 +180,43 @@ class Dbt_ppploan_files extends Dbt_Base{
      */
     static function get_request_documents( $request_ids = array(), $document_type )
     {
-        $sql = sprintf( "SELECT * FROM %s WHERE `request_id` IN(%s) AND `document_type`='%s'", self::get_table_name(), implode(", ", $request_ids), $document_type);
+        $db_fields = self::get_db_fields();
+        $select_fields = array();
+        foreach ($db_fields as $key => $field) {
+            if($field["show_in_front"]){
+                $select_fields[] = $field["code"];
+            }
+        }
+        $sql = sprintf( "SELECT %s FROM %s WHERE `request_id` IN(%s) AND `document_type`='%s'", implode(", ", $select_fields), self::get_table_name(), implode(", ", $request_ids), $document_type);
         $items = self::$pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
         return $items;
+    }
+
+
+    /**
+     * @return array with request_id as keys and with key/values pairs as strings
+     */
+    static function get_ceils( array $items ){
+        $hidden_fields = array("id", "request_id", "src_name", "document_type");
+        $new_items = array();
+        foreach ($items as $k => $item) {
+            $strs = array();
+            foreach ($item as $key => $subitem) {
+                $strs2 = array();
+                foreach ($subitem as $key => $value) {
+                    if(!in_array($key, $hidden_fields)){
+                        if($key == "src"){
+                            $strs2[] = sprintf('<a href="%s" target="_blank"><img src="%s" width="50px" height="auto" alt="%s"></a>', $subitem["src"], $value, $value, $subitem["src_name"]);
+                        }else{
+                            $strs2[] = "<small>" . $key . ": </small><strong>" . $value . "</strong>";
+                        }
+                    }
+                }
+                $strs[] = implode(", ", $strs2);
+            }
+            $new_items[$k] = implode("<br><br>", $strs);
+        }
+        return $new_items;
     }
 
 }
