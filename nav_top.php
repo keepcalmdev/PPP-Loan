@@ -52,7 +52,7 @@ require_once 'ra/init.php';
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo ROOT_URL; ?>/requests">Requests</a>
+          <a class="nav-link" href="<?php echo ROOT_URL; ?>/requests.php">Requests</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0" action="login.php">

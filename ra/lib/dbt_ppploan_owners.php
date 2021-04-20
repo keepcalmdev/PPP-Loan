@@ -13,7 +13,7 @@ class Dbt_ppploan_owners extends Dbt_Base{
 				"title" => "Bussiness owner id",
 				"type" => "int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY",
 				"show_in_admin" => true,
-                "show_in_front" => true,
+                "show_in_front" => false,
 				"default_value" => false
 			),
 			"request_id" => array(
@@ -22,82 +22,106 @@ class Dbt_ppploan_owners extends Dbt_Base{
 				"type" => "int unsigned",
 				"foreign" => "FOREIGN KEY (`request_id`) REFERENCES `" . Dbt_ppploan_requests::get_table_name() . "` (`id`) ON DELETE CASCADE ON UPDATE CASCADE",
 				"show_in_admin" => true,
-                "show_in_front" => true,
-				"default_value" => false
+                "show_in_front" => false,
+				"default_value" => null
 			),
 			// Owner info
-			"owner_fullname" => array(
-				"code" => "owner_fullname",
+			"fullname" => array(
+				"code" => "fullname",
 				"title" => "Owner Full Name",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
                 "show_in_front" => true,
 				"default_value" => false
 			),
-			"owner_title" => array(
-				"code" => "owner_title",
+			"title" => array(
+				"code" => "title",
 				"title" => "Title",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
                 "show_in_front" => true,
 				"default_value" => false
 			),
-			"owner_percent" => array(
-				"code" => "owner_percent",
+			"percent" => array(
+				"code" => "percent",
 				"title" => "Owner %",
                 "type" => "varchar(64)",
 				"show_in_admin" => true,
                 "show_in_front" => true,
 				"default_value" => false
 			),
-			"owner_ssn" => array(
-				"code" => "owner_ssn",
+			"ssn" => array(
+				"code" => "ssn",
 				"title" => "Owner SSN",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
                 "show_in_front" => true,
 				"default_value" => false
 			),
-			"owner_address" => array(
-				"code" => "owner_address",
+			"address" => array(
+				"code" => "address",
 				"title" => "Address",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
                 "show_in_front" => true,
 				"default_value" => false
 			),
-			"owner_address_2" => array(
-				"code" => "owner_address_2",
+			"address_2" => array(
+				"code" => "address_2",
 				"title" => "Address 2",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
                 "show_in_front" => true,
 				"default_value" => false
 			),
-			"owner_city" => array(
-				"code" => "owner_city",
+			"city" => array(
+				"code" => "city",
 				"title" => "City",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
                 "show_in_front" => true,
 				"default_value" => false
 			),
-			"owner_state" => array(
-				"code" => "owner_state",
+			"state" => array(
+				"code" => "state",
 				"title" => "State",
                 "type" => "varchar(128)",
 				"show_in_admin" => true,
                 "show_in_front" => true,
 				"default_value" => false
 			),
-			"owner_zip" => array(
-				"code" => "owner_zip",
+			"zip" => array(
+				"code" => "zip",
 				"title" => "Zip",
                 "type" => "varchar(64)",
 				"show_in_admin" => true,
                 "show_in_front" => true,
 				"default_value" => false
 			),
+            "is_active" => array(
+                "code" => "is_active",
+                "title" => "Active",
+                "type" => "boolean  DEFAULT 1",
+                "show_in_admin" => true,
+                "show_in_front" => true,
+                "default_value" => true
+            ),
+            "created_dt" => array(
+                "code" => "created_dt",
+                "title" => "Date Created",
+                "type" => "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP",
+                "show_in_admin" => true,
+                "show_in_front" => true,
+                "default_value" => null
+            ),
+            "modified_dt" => array(
+                "code" => "modified_dt",
+                "title" => "Date Modified",
+                "type" => "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP",
+                "show_in_admin" => true,
+                "show_in_front" => false,
+                "default_value" => null
+            ),
 		);
 		return $db_fields;
 	}

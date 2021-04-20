@@ -3,7 +3,7 @@ namespace Ra;
 
 
 class Dbt_ppploan_requests extends Dbt_Base{
-	
+
 	public static $table_name = "ppploan_requests";
 
 	static function get_db_fields(){
@@ -23,7 +23,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
                 "type" => "boolean",
 				"show_in_admin" => true,
                 "show_in_front" => true,
-				"default_value" => false
+				"default_value" => null
 			),
 			"business_legal_entity_type" => array(
 				"code" => "business_legal_entity_type",
@@ -135,7 +135,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
                 "type" => "boolean",
                 "show_in_admin" => true,
                 "show_in_front" => true,
-                "default_value" => false
+                "default_value" => null
             ),
             "question_2" => array(
                 "code" => "question_2",
@@ -143,7 +143,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
                 "type" => "boolean",
                 "show_in_admin" => true,
                 "show_in_front" => true,
-                "default_value" => false
+                "default_value" => null
             ),
             "question_3" => array(
                 "code" => "question_3",
@@ -151,7 +151,7 @@ class Dbt_ppploan_requests extends Dbt_Base{
                 "type" => "boolean",
                 "show_in_admin" => true,
                 "show_in_front" => true,
-                "default_value" => false
+                "default_value" => null
             ),
             "question_4" => array(
                 "code" => "question_4",
@@ -159,7 +159,31 @@ class Dbt_ppploan_requests extends Dbt_Base{
                 "type" => "boolean",
                 "show_in_admin" => true,
                 "show_in_front" => true,
-                "default_value" => false
+                "default_value" => null
+            ),
+            "is_active" => array(
+                "code" => "is_active",
+                "title" => "Active",
+                "type" => "boolean  DEFAULT 1",
+                "show_in_admin" => true,
+                "show_in_front" => false,
+                "default_value" => true
+            ),
+            "created_dt" => array(
+                "code" => "created_dt",
+                "title" => "Date Created",
+                "type" => "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP",
+                "show_in_admin" => true,
+                "show_in_front" => false,
+                "default_value" => null
+            ),
+            "modified_dt" => array(
+                "code" => "modified_dt",
+                "title" => "Date Modified",
+                "type" => "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP",
+                "show_in_admin" => true,
+                "show_in_front" => false,
+                "default_value" => null
             ),
 		);
 		return $db_fields;

@@ -54,11 +54,9 @@ $sql_details = array(
  * server-side, there is no need to edit below this line.
  */
 
-//require( 'ssp.class.php' );
+$result = Ra\SSP_ppploan::complex( $_GET, $sql_details, $table, $primaryKey, $columns );
 
-$result = SSP::simple( $_GET, $sql_details, $table, $primaryKey, $columns );
-
-//fppr($result, __FILE__.' $result');
+fppr($result, __FILE__.' $result');
 
 echo json_encode($result);
 

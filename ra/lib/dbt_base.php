@@ -54,7 +54,7 @@ class Dbt_base {
         $fields = array_keys($args);
         $sql = sprintf("INSERT INTO %s(%s) VALUES(:%s)", self::get_table_name(), implode(", ", $fields), implode(", :", $fields));
         foreach ($args as $key => $value) {
-            if(!$args[$key]){
+            if(!isset($args[$key]) || $args[$key] === ''){
                 $args[$key] = $df_fields[$key]["default_value"];
             }
         }

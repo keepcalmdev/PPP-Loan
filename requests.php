@@ -50,7 +50,10 @@ $db_fields = $ppploan->get_db_fields();
         $('#requests-table').DataTable({
             "processing": true,
             "serverSide": true,
-            "ajax": "ra/ajax/get_loan_requests.php",
+            "ajax": {
+                "url": "ra/ajax/get_loan_requests.php",
+                "type": "POST",
+            },
             "columns": <?php echo json_encode($columns); ?>,
         });
     });

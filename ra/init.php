@@ -12,6 +12,7 @@ require_once 'lib/dbt_ppploan_requests.php';
 require_once 'lib/dbt_ppploan_owners.php';
 require_once 'lib/dbt_ppploan_files.php';
 require_once ROOT_PATH . '/vendor/datatables/ssp.class.php';
+require_once 'lib/ssp_ppploan.class.php';
 
 $ppploan = new Ra\Dbt_ppploan_requests();
 $ppploan->create_table();

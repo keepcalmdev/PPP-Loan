@@ -220,24 +220,24 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                             <h4 class="test-center  p-2 rounded text-dark">Business Ownership</h4>
                             <div class="form-group">
                                 <label for="business_owner"><b>Who Owns Your Business?</b></label>
-                                <input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_title']['code']; ?>]" placeholder="Owner Full Name" id="business_owner">
+                                <input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['title']['code']; ?>]" placeholder="Owner Full Name" id="business_owner">
                                 <b></b>
                             </div>
                             <div class="form-group business-owner-fields" data-owner_counter="0">
                                 <div class="row">
-                                    <div class="col"> <input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_title']['code']; ?>]" placeholder="Title">
+                                    <div class="col"> <input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['title']['code']; ?>]" placeholder="Title">
                                     </div>
-                                    <div class="col"><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_percent']['code']; ?>]" placeholder="Owner %"></div>
+                                    <div class="col"><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['percent']['code']; ?>]" placeholder="Owner %"></div>
                                 </div>
-                                <br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_ssn']['code']; ?>]" placeholder="Owner SSN">
+                                <br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['ssn']['code']; ?>]" placeholder="Owner SSN">
                                 <p>Please enter owner SSN unless owner is a business then enter TIN</p>
-                                <input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_address']['code']; ?>]" placeholder="Address">
-                                <br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_address_2']['code']; ?>]" placeholder="Address 2">
-                                <br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_city']['code']; ?>]" placeholder="City">
+                                <input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['address']['code']; ?>]" placeholder="Address">
+                                <br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['address_2']['code']; ?>]" placeholder="Address 2">
+                                <br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['city']['code']; ?>]" placeholder="City">
 
                                 <div class="row">
-                                    <div class="col"><br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_state']['code']; ?>]" placeholder="State"></div>
-                                    <div class="col"><br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['owner_zip']['code']; ?>]" placeholder="Zip"></div>
+                                    <div class="col"><br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['state']['code']; ?>]" placeholder="State"></div>
+                                    <div class="col"><br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['zip']['code']; ?>]" placeholder="Zip"></div>
                                 </div>
                             </div>
                             <div class="appending_div"></div>
