@@ -104,4 +104,23 @@ class Dbt_base {
         }
         return $new_items;
     }
+
+    /**
+     * @return array $items with request_id as keys or empty array
+     */
+    static function get_strings( array $items ){
+        $new_items = array();
+        foreach ($items as $k => $item) {
+            $strs = array();
+            foreach ($item as $key => $subitem) {
+                $strs2 = array();
+                foreach ($subitem as $key => $value) {
+                    $strs2[] = $key . ": <strong>" . $value . "</strong>";
+                }
+                $strs[] = implode(", ", $strs2);
+            }
+            $new_items[$k] = implode("<br><br>", $strs);
+        }
+        return $new_items;
+    }
 }

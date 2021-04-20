@@ -42,15 +42,44 @@ class SSP_ppploan extends \SSP {
             $out[] = $row;
         }
 
-        // to add foregin columns
+        // to add foreign columns
+        $db_fgn_fields = Dbt_ppploan_requests::get_foreign_fields();
         $request_ids = array_column($out, "id");
-        $owners = Dbt_ppploan_owners::arrange_by_request_id( Dbt_ppploan_owners::get_by_request_ids($request_ids) );
-        $tax_documents = Dbt_ppploan_files::arrange_by_request_id( Dbt_ppploan_files::get_request_documents($request_ids, "tax_documents") );
-        $articles_incorporations = Dbt_ppploan_files::arrange_by_request_id( Dbt_ppploan_files::get_request_documents($request_ids, "articles_incorporations") );
+        if($db_fgn_fields["owners"]["show_in_front"]){
+            $owners = Dbt_ppploan_owners::arrange_by_request_id( Dbt_ppploan_owners::get_by_request_ids($request_ids) );
+            $owners_strs = Dbt_ppploan_owners::get_strings($owners);
+            
+        }else{
+            $owners = false;
+        }
+        if($db_fgn_fields["files"]["show_in_front"]) {
+            $files = Dbt_ppploan_files::arrange_by_request_id(Dbt_ppploan_files::get_by_request_ids($request_ids));
+        }else{
+            $files = false;
+        }
+        if($db_fgn_fields["tax_documents"]["show_in_front"]) {
+            $tax_documents = Dbt_ppploan_files::arrange_by_request_id(Dbt_ppploan_files::get_request_documents($request_ids, "tax_documents"));
+        }else{
+            $tax_documents = false;
+        }
+        if($db_fgn_fields["articles_incorporations"]["show_in_front"]) {
+            $articles_incorporations = Dbt_ppploan_files::arrange_by_request_id(Dbt_ppploan_files::get_request_documents($request_ids, "articles_incorporations"));
+        }else{
+            $articles_incorporations = false;
+        }
         foreach ($out as &$row) {
-            $row["owners"] = $owners[ $row["id"] ];
-            $row["tax_documents"] = $tax_documents[ $row["id"] ];
-            $row["articles_incorporations"] = $articles_incorporations[ $row["id"] ];
+            if($owners){
+                $row["owners"] = $owners_strs[ $row["id"] ];
+            }
+            if($files) {
+                $row["files"] = $files[$row["id"]];
+            }
+            if($tax_documents) {
+                $row["tax_documents"] = $tax_documents[$row["id"]];
+            }
+            if($articles_incorporations) {
+                $row["articles_incorporations"] = $articles_incorporations[$row["id"]];
+            }
         }
         return $out;
     }

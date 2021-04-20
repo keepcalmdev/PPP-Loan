@@ -23,8 +23,6 @@ require_once  __DIR__ . '/../init.php';
 // DB table to use
 $table = $ppploan::get_table_name();
 $db_fields = $ppploan->get_db_fields();
-//$db_fgn_fields = $ppploan->get_foreign_fields();
-//$fields = array_merge($db_fields, $db_fgn_fields);
 
 // Table's primary key
 $primaryKey = 'id';
