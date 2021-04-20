@@ -111,7 +111,7 @@ class Dbt_ppploan_owners extends Dbt_Base{
                 "title" => "Date Created",
                 "type" => "datetime NOT NULL DEFAULT CURRENT_TIMESTAMP",
                 "show_in_admin" => true,
-                "show_in_front" => true,
+                "show_in_front" => false,
                 "default_value" => null
             ),
             "modified_dt" => array(
