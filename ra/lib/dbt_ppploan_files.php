@@ -14,7 +14,7 @@ class Dbt_ppploan_files extends Dbt_Base{
 				"title" => "Bussiness owner id",
 				"type" => "int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY",
 				"show_in_admin" => true,
-                "show_in_front" => false,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"request_id" => array(
@@ -87,7 +87,7 @@ class Dbt_ppploan_files extends Dbt_Base{
                 "title" => "Active",
                 "type" => "boolean  DEFAULT 1",
                 "show_in_admin" => true,
-                "show_in_front" => true,
+                "show_in_front" => false,
                 "default_value" => true
             ),
 			"created_dt" => array(
@@ -172,6 +172,17 @@ class Dbt_ppploan_files extends Dbt_Base{
             }
         }
         return $uploaded_files;
+    }
+
+
+    /**
+     * @return array $items
+     */
+    static function get_request_documents( $request_ids = array(), $document_type )
+    {
+        $sql = sprintf( "SELECT * FROM %s WHERE `request_id` IN(%s) AND `document_type`='%s'", self::get_table_name(), implode(", ", $request_ids), $document_type);
+        $items = self::$pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
+        return $items;
     }
 
 }

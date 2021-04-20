@@ -23,6 +23,8 @@ require_once  __DIR__ . '/../init.php';
 // DB table to use
 $table = $ppploan::get_table_name();
 $db_fields = $ppploan->get_db_fields();
+//$db_fgn_fields = $ppploan->get_foreign_fields();
+//$fields = array_merge($db_fields, $db_fgn_fields);
 
 // Table's primary key
 $primaryKey = 'id';
@@ -33,12 +35,16 @@ $primaryKey = 'id';
 // indexes
 
 $columns = array();
-foreach ($db_fields as $key => $db_field) {
-    $columns[] = array(
-        'db' => $db_field['code'],
-        'dt' => $key
-    );
+foreach ($db_fields as $key => $field) {
+    if($field["show_in_front"]){
+        $columns[] = array(
+            'db' => $field['code'],
+            'dt' => $key
+        );
+    }
 }
+//fppr($columns, __FILE__.' $columns');
+
 
 // SQL server connection information
 $sql_details = array(
@@ -54,9 +60,9 @@ $sql_details = array(
  * server-side, there is no need to edit below this line.
  */
 
-$result = Ra\SSP_ppploan::complex( $_GET, $sql_details, $table, $primaryKey, $columns );
+$result = Ra\SSP_ppploan::complex( $_POST, $sql_details, $table, $primaryKey, $columns );
 
-fppr($result, __FILE__.' $result');
+//fppr($result, __FILE__.' $result');
 
 echo json_encode($result);
 

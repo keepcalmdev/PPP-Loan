@@ -6,48 +6,55 @@ use Ra\Dbt_ppploan_files as Dbt_ppploan_files;
 
 
 class SSP_ppploan extends \SSP {
-
     /**
-     * Ordering
+     * Create the data output array for the DataTables rows
      *
-     * Construct the ORDER BY clause for server-side processing SQL query
-     *
-     *  @param  array $request Data sent to server by DataTables
      *  @param  array $columns Column information array
-     *  @return string SQL order by clause
+     *  @param  array $data    Data from the SQL get
+     *  @return array          Formatted data in a row based format
      */
-    static function order ( $request, $columns )
+    static function data_output ( $columns, $data )
     {
-        $order = '';
+        $out = array();
 
-        if ( isset($request['order']) && count($request['order']) ) {
-            $orderBy = array();
-            $dtColumns = self::pluck( $columns, 'dt' );
-
-            for ( $i=0, $ien=count($request['order']) ; $i<$ien ; $i++ ) {
-                // Convert the column index into the column data property
-                $columnIdx = intval($request['order'][$i]['column']);
-                $requestColumn = $request['columns'][$columnIdx];
-
-                $columnIdx = array_search( $requestColumn['data'], $dtColumns );
-                $column = $columns[ $columnIdx ];
-
-                if ( $requestColumn['orderable'] == 'true' ) {
-                    $dir = $request['order'][$i]['dir'] === 'asc' ?
-                        'ASC' :
-                        'DESC';
-
-                    $orderBy[] = Dbt_ppploan_requests::get_table_name() . '.`'.$column['db'].'` '.$dir;
+        for ( $i=0, $ien=count($data) ; $i<$ien ; $i++ ) {
+            $row = array();
+            for ( $j=0, $jen=count($columns) ; $j<$jen ; $j++ ) {
+                $column = $columns[$j];
+                // Is there a formatter?
+                if ( isset( $column['formatter'] ) ) {
+                    if(empty($column['db'])){
+                        $row[ $column['dt'] ] = $column['formatter']( $data[$i] );
+                    }
+                    else{
+                        $row[ $column['dt'] ] = $column['formatter']( $data[$i][ $column['db'] ], $data[$i] );
+                    }
+                }
+                else {
+                    if(!empty($column['db'])){
+                        $row[ $column['dt'] ] = $data[$i][ $columns[$j]['db'] ];
+                    }
+                    else{
+                        $row[ $column['dt'] ] = "";
+                    }
                 }
             }
-
-            if ( count( $orderBy ) ) {
-                $order = 'ORDER BY '.implode(', ', $orderBy);
-            }
+            $out[] = $row;
         }
 
-        return $order;
+        // to add foregin columns
+        $request_ids = array_column($out, "id");
+        $owners = Dbt_ppploan_owners::arrange_by_request_id( Dbt_ppploan_owners::get_by_request_ids($request_ids) );
+        $tax_documents = Dbt_ppploan_files::arrange_by_request_id( Dbt_ppploan_files::get_request_documents($request_ids, "tax_documents") );
+        $articles_incorporations = Dbt_ppploan_files::arrange_by_request_id( Dbt_ppploan_files::get_request_documents($request_ids, "articles_incorporations") );
+        foreach ($out as &$row) {
+            $row["owners"] = $owners[ $row["id"] ];
+            $row["tax_documents"] = $tax_documents[ $row["id"] ];
+            $row["articles_incorporations"] = $articles_incorporations[ $row["id"] ];
+        }
+        return $out;
     }
+
 
     /**
      * The difference between this method and the `simple` one, is that you can
@@ -102,52 +109,14 @@ class SSP_ppploan extends \SSP {
             $whereAllSql = 'WHERE '.$whereAll;
         }
 
-        // get bussiness owners
-        $joinOwners = sprintf(" LEFT JOIN %1\$s ON %1\$s.request_id = %2\$s.id", Dbt_ppploan_owners::get_table_name(), Dbt_ppploan_requests::get_table_name() );
-        $dbFieldsOwners = Dbt_ppploan_owners::get_db_fields();
-        $selectOwners = array();
-        foreach ($dbFieldsOwners as $field) {
-            if($field["show_in_front"]){
-                $selectOwners[] = sprintf("JSON_ARRAYAGG(%1\$s.%2\$s) AS owners_%2\$s", Dbt_ppploan_owners::get_table_name(), $field["code"]);
-            }
-        }
-        $selectOwnersSql = '';
-        if($selectOwners){
-            $selectOwnersSql = ", " . implode(", ", $selectOwners);
-        }
-
-        // get files
-        $joinFiles = sprintf(" LEFT JOIN %1\$s ON %1\$s.request_id = %2\$s.id", Dbt_ppploan_files::get_table_name(), Dbt_ppploan_requests::get_table_name() );
-        $dbFieldsFiles = Dbt_ppploan_files::get_db_fields();
-        $selectFiles = array();
-        foreach ($dbFieldsFiles as $field) {
-            if($field["show_in_front"]){
-                $selectFiles[] = sprintf("JSON_ARRAYAGG(%1\$s.%2\$s) AS files_%2\$s", Dbt_ppploan_files::get_table_name(), $field["code"]);
-            }
-        }
-        $selectFilesSql = '';
-        if($selectFiles){
-            $selectFilesSql = ", " . implode(", ", $selectFiles);
-        }
-        //
-
-        $group_by = " GROUP BY " . Dbt_ppploan_requests::get_table_name() . ".id";
-
         // Main query to actually get the data
-        $sql = "SELECT " . Dbt_ppploan_requests::get_table_name() .".`" . implode("`, " . Dbt_ppploan_requests::get_table_name() . ".`", self::pluck($columns, 'db')) . "`
-            $selectOwnersSql
-            $selectFilesSql
-            FROM `$table`
-            $joinOwners
-            $joinFiles
-            $where
-            $group_by
-            $order
-            $limit";
-        
-        fppr($sql , __FILE__.' $sql ');
-
-        $data = self::sql_exec( $db, $bindings, $sql );
+        $data = self::sql_exec( $db, $bindings,
+            "SELECT `".implode("`, `", self::pluck($columns, 'db'))."`
+			 FROM `$table`
+			 $where
+			 $order
+			 $limit"
+        );
 
         // Data set length after filtering
         $resFilterLength = self::sql_exec( $db, $bindings,
@@ -177,5 +146,6 @@ class SSP_ppploan extends \SSP {
             "data"            => self::data_output( $columns, $data )
         );
     }
+
 }
 

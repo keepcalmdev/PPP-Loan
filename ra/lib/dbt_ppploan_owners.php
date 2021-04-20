@@ -13,7 +13,7 @@ class Dbt_ppploan_owners extends Dbt_Base{
 				"title" => "Bussiness owner id",
 				"type" => "int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY",
 				"show_in_admin" => true,
-                "show_in_front" => false,
+                "show_in_front" => true,
 				"default_value" => false
 			),
 			"request_id" => array(
@@ -103,7 +103,7 @@ class Dbt_ppploan_owners extends Dbt_Base{
                 "title" => "Active",
                 "type" => "boolean  DEFAULT 1",
                 "show_in_admin" => true,
-                "show_in_front" => true,
+                "show_in_front" => false,
                 "default_value" => true
             ),
             "created_dt" => array(

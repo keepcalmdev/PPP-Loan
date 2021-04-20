@@ -14,7 +14,6 @@ class Dbt_ppploan_requests extends Dbt_Base{
 				"type" => "int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY",
 				"show_in_admin" => true,
 				"show_in_front" => true,
-                "show_in_front" => true,
 				"default_value" => false
 			),
 			"is_received_in_2020_2021" => array(
@@ -187,6 +186,44 @@ class Dbt_ppploan_requests extends Dbt_Base{
             ),
 		);
 		return $db_fields;
+	}
+
+	static function get_foreign_fields(){
+		$db_fgn_fields = array(
+			"owners" => array(
+				"code" => "owners",
+				"prefix" => "owner_",
+				"title" => "Business Owners",
+				"show_in_admin" => true,
+				"show_in_front" => true,
+				"default_value" => false
+			),
+			"files" => array(
+				"code" => "files",
+                "prefix" => "files_",
+				"title" => "Files",
+				"show_in_admin" => true,
+				"show_in_front" => false,
+				"default_value" => false
+			),
+			"tax_documents" => array(
+				"code" => "tax_documents",
+                "prefix" => "files_",
+				"title" => "Tax Documents",
+				"show_in_admin" => true,
+				"show_in_front" => true,
+				"default_value" => false
+			),
+			"articles_incorporations" => array(
+				"code" => "articles_incorporations",
+                "prefix" => "files_",
+				"title" => "Articles Incorporations",
+				"show_in_admin" => true,
+				"show_in_front" => true,
+				"default_value" => false
+			),
+		);
+		return $db_fgn_fields;
 	}
 
 }

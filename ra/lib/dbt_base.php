@@ -6,6 +6,7 @@ class Dbt_base {
 
     protected static $pdo;
     private static $table_name;
+    private static $limit;
 
     public function __construct() {
         self::$pdo = new \PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASSWORD, $DSN_OPTIONS);
@@ -71,5 +72,36 @@ class Dbt_base {
             $result["errors"][] =  $e->getMessage();
         }
         return $result;
+    }
+
+    /**
+     * @return array $items
+     */
+    static function get_by_ids( $ids = array() )
+    {
+        $sql = sprintf( "SELECT * FROM  %s WHERE `id` IN(%s)", self::get_table_name(), implode(", ", $ids));
+        $items = self::$pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
+        return $items;
+    }
+
+    /**
+     * @return array $items
+     */
+    static function get_by_request_ids( $ids = array() )
+    {
+        $sql = sprintf( "SELECT * FROM  %s WHERE `request_id` IN(%s)", self::get_table_name(), implode(", ", $ids));
+        $items = self::$pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
+        return $items;
+    }
+
+    /**
+     * @return array $items with request_id as keys or empty array
+     */
+    static function arrange_by_request_id( array $items ){
+        $new_items = array();
+        foreach ($items as $item) {
+            $new_items[$item["request_id"]][] = $item;
+        }
+        return $new_items;
     }
 }
