@@ -144,7 +144,7 @@ class Dbt_ppploan_files extends Dbt_Base{
      */
     static function upload($form_files){
         if(!is_dir(ROOT_PATH . self::$uploads_dir)){
-            mkdir(ROOT_PATH . self::$uploads_dir, 0700);
+            mkdir(ROOT_PATH . self::$uploads_dir, 0777);
         }
         $finfo = new \finfo(FILEINFO_MIME_TYPE);
         $uploaded_files = array();

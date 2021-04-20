@@ -568,7 +568,7 @@ $(document).ready(function() {
                 if(responce.errors.length){
                     $("#response").append('<div class="bg-danger text-light bg-danger mb-2 p-2 rounded lead">' + responce.errors.join("<br>") + '</div>');
                 }
-                $("#response").append('<div class="bg-secondary text-light mb-2 p-2 rounded lead"><small>' + responce.html + '</small></div>');
+//                $("#response").append('<div class="bg-secondary text-light mb-2 p-2 rounded lead"><small>' + responce.html + '</small></div>');
 
                 $("#submitme").hide();
                 $("#final").fadeIn(1000);
