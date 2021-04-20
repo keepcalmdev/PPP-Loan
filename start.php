@@ -15,9 +15,9 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
 ?>
 
 <style type="text/css" media="screen">
-    #first, #second, #second-b, #third{
-        display: block !important;
-    }
+    /*#first, #second, #second-b, #third{*/
+        /*display: block !important;*/
+    /*}*/
     /*#second-b{*/
         /*display: block !important;*/
     /*}*/
