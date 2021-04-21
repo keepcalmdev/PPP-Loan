@@ -482,7 +482,7 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 
-    // alert('Hello');
+
     $('#next-1').click(function(e) {
         e.preventDefault();
         if ($('#name').val() == '') {
