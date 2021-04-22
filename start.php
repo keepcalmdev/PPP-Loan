@@ -227,7 +227,8 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                                 <div class="row">
                                     <div class="col"> <input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['title']['code']; ?>]" placeholder="Title">
                                     </div>
-                                    <div class="col"><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['percent']['code']; ?>]" placeholder="Owner %"></div>
+                                    <div class="col"><input type="number" class="form-control" name="owners[0][<?php echo $db_fields_owners['percent']['code']; ?>]" placeholder="Owner %"
+                                    onkeyup="if(parseInt(this.value)>100){ this.value =100; return false; }"></div>
                                 </div>
                                 <br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['ssn']['code']; ?>]" placeholder="Owner SSN">
                                 <p>Please enter owner SSN unless owner is a business then enter TIN</p>
