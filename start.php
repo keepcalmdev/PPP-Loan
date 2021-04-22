@@ -117,22 +117,22 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
                                 <div class="row">
                                     <div class="col">
                                         <label for="first_name"><b>First Name</b></label>
-                                        <input type="text" class="form-control" name="loan_request[<?php echo $db_fields['first_name']['code']; ?>]" placeholder="Enter First Name" id="name"><span style="font-size:12px; color:#646464; ">* Required Field</span>
+                                        <input type="text" class="form-control" name="loan_request[<?php echo $db_fields['first_name']['code']; ?>]" placeholder="Enter First Name" id="firstname"><span style="font-size:12px; color:#646464; ">* Required Field</span>
                                         <b class="form-text text-danger" id="usernameError"></b>
                                     </div>
                                     <div class="col">
                                         <label for="last_name"><b>Last Name</b></label>
                                         <input type="text" class="form-control" name="loan_request[<?php echo $db_fields['last_name']['code']; ?>]" placeholder="Enter Last Name" id="lastname"><span style="font-size:12px; color:#646464; ">* Required Field</span>
-                                        <b class="form-text text-danger" id="usernameError"></b>
+                                        <b class="form-text text-danger" id="userLastnameError"></b>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col"><label id="Email1Label" for="Email" class="email"><b>Email</b></label>
                                         <input id="email" class="Email form-control womplyTextField womplyRequired" name="loan_request[<?php echo $db_fields['email']['code']; ?>]" maxlength="255" type="email" required><span style="font-size:12px; color:#646464; ">* Required Field</span>
                                     </div>
-                                    <div class="col"><label id="Email1Label" for="phone" class="womplyLabel"><b>Company Phone</b></label> <input id="phone" class="phone form-control womplyTextField womplyRequired" name="loan_request[<?php echo $db_fields['company_phone']['code']; ?>]" maxlength="255" type="phone" onfocus="" onblur="" onchange=""><span style="font-size:12px; color:#646464; ">* Required Field</span></div>
+                                    <div class="col"><label id="Email1Label" for="phone" class="womplyLabel"><b>Company Phone</b></label> <input id="phone" class="phone form-control womplyTextField womplyRequired" name="loan_request[<?php echo $db_fields['company_phone']['code']; ?>]" maxlength="255" type="number" onfocus="" onblur="" onchange=""><span style="font-size:12px; color:#646464; ">* Required Field</span></div>
                                 </div>
-                                <div><label id="Email1Label" for="phone" class="womplyLabel"><b>Mobile Phone</b></label> <input id="phone" class="phone form-control womplyTextField womplyRequired" name="loan_request[<?php echo $db_fields['mobile_phone']['code']; ?>]" maxlength="255" type="phone" onfocus="" onblur="" onchange=""><span style="font-size:12px; color:#646464; "><a href="#">Send Verification Code</a>* Required Field</span></div>
+                                <div><label id="Email1Label" for="phone" class="womplyLabel"><b>Mobile Phone</b></label> <input id="phone" class="phone form-control womplyTextField womplyRequired" name="loan_request[<?php echo $db_fields['mobile_phone']['code']; ?>]" maxlength="255" type="number" onfocus="" onblur="" onchange=""><span style="font-size:12px; color:#646464; "><a href="#">Send Verification Code</a>* Required Field</span></div>
                             </div>
                             <div class="form-group">
                                 <a href="#" class="btn btn-lg btn-primary col" id="next-1">Continue</a>
@@ -237,7 +237,7 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
 
                                 <div class="row">
                                     <div class="col"><br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['state']['code']; ?>]" placeholder="State"></div>
-                                    <div class="col"><br><input type="text" class="form-control" name="owners[0][<?php echo $db_fields_owners['zip']['code']; ?>]" placeholder="Zip"></div>
+                                    <div class="col"><br><input type="number" class="form-control" name="owners[0][<?php echo $db_fields_owners['zip']['code']; ?>]" placeholder="Zip"></div>
                                 </div>
                             </div>
                             <div class="appending_div"></div>
@@ -482,7 +482,7 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 
-    // alert('Hello');
+
     $('#next-1').click(function(e) {
         e.preventDefault();
         if ($('#name').val() == '') {
@@ -500,20 +500,38 @@ $(document).ready(function() {
         } else if (!isNaN($('#name').val())) {
             $('#nameError').html('Number are not allowed');
             return false;
+        } else if ($('#firstname').val() == '') {
+            $('#usernameError').html('* First name is required.');
+            $('html, body').animate({
+                scrollTop: 0
+            }, 200);
+            return false;
+        } else if ($('#firstname').val().length < 2) {
+            $('#usernameError').html('* First Name is mini 2 characters');
+            $('html, body').animate({
+                scrollTop: 0
+            }, 200);
+            return false;
+        } else if (!isNaN($('#firstname').val())) {
+            $('#usernameError').html('Number are not allowed');
+            $('html, body').animate({
+                scrollTop: 0
+            }, 200);
+            return false;
         } else if ($('#lastname').val() == '') {
-            $('#usernameError').html('* Last name is required.');
+            $('#userLastnameError').html('* Last name is required.');
             $('html, body').animate({
                 scrollTop: 0
             }, 200);
             return false;
         } else if ($('#lastname').val().length < 2) {
-            $('#usernameError').html('* Last Name is mini 2 characters');
+            $('#userLastnameError').html('* Last Name is mini 2 characters');
             $('html, body').animate({
                 scrollTop: 0
             }, 200);
             return false;
         } else if (!isNaN($('#lastname').val())) {
-            $('#usernameError').html('Number are not allowed');
+            $('#userLastnameError').html('Number are not allowed');
             $('html, body').animate({
                 scrollTop: 0
             }, 200);
@@ -528,6 +546,12 @@ $(document).ready(function() {
         $('html, body').animate({
             scrollTop: 0
         }, 200);
+    });
+
+    $('select[name=q4]').change(function () {
+        if ($(this).val() !== '') {
+            $('#submit').prop('disabled', false)
+        }
     });
 
     $('#submit').click(function(e) {

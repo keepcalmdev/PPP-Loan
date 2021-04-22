@@ -1,4 +1,5 @@
-body,html{color:#000;}
+body,html { 
+  color:#000;}
 
 .header-text,.sub-text{text-align:center;}
 
@@ -90,16 +91,30 @@ label{margin-top:20px;  font-size:18px  !important; color:#000 !important;}
   
   background:#062345; 
   color:#fff;
-
   padding:15px; 
   padding-top:30px;
-  
+}
+
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
 
 .form-group{margin-top:20px;}
 
- .document_types label{border: 1px solid #ccc; color:#000 important;  padding: 15px; padding-left:25px; padding:15px; margin-bottom:20px !mportant;    
-    border-radius: 10px;}
+ .document_types label{
+    border: 1px solid #ccc; 
+    color:#000!important;  
+    padding: 15px; 
+    padding-left:25px; 
+    padding:15px; 
+    margin-bottom:20px!important;    
+    border-radius: 10px;
+  }
 
 #footer a{color:#fff;}
