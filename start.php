@@ -289,7 +289,7 @@ $db_fields_owners = $ppploan_owners->get_db_fields();
 
                             <div class="form-group">
                                 <a href="#" class="btn btn-default" id="prev-3">Previous</a>
-                                <button type="submit" id="submit" name="submit" class="btn btn-primary">Continue</button>
+                                <button type="submit" id="submit" name="submit" class="btn btn-primary" disabled>Continue</button>
                             </div>
                         </div>
                     </form>
@@ -548,7 +548,7 @@ $(document).ready(function() {
         }, 200);
     });
 
-    $('select[name=q4]').change(function () {
+    $('#LoanNum5').change(function () {
         if ($(this).val() !== '') {
             $('#submit').prop('disabled', false)
         }
