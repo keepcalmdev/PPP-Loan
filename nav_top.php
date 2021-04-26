@@ -9,30 +9,17 @@
   </script>
   <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" >
   </script>
-  <style type="text/css" media="screen">
-    #second,
-    #second-b,
-    #response,
-    #third,
-    #final,
-    #submitme,
-    #first 
-    {
-      display: none;
-    }
-  </style>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="main">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="../apply"><img src="https://getppphope.com/5fc7f90bcbe9ef3457d0eaa1_Hope-logo-hicon-cropped-p-500.jpeg" class="img-responsive"></a>
+    <a class="navbar-brand" href="../apply"><img src="images/5fc7f90bcbe9ef3457d0eaa1_Hope-logo-hicon-cropped-p-500.jpeg" class="img-responsive"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -41,7 +28,6 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Company Information</a>
         </li>
-
         <li class="nav-item">
           <a class="nav-link disabled" href="#">My Documents</a>
         </li>
@@ -52,4 +38,3 @@
       </form>
     </div>
   </nav>
-</body>
