@@ -2,23 +2,6 @@
 require 'nav_top.php';
 ?>
 
-<style type="text/css" media="screen">
-    #second,
-    #second-b,
-    #response,
-    #third,
-    #final,
-    #submitme,
-    #first {display: none;}
-
-</style>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-
-</head>
-
-<body class="main">
     <div id="page-container">
         <div id="content-wrap">
             <div class="container">
@@ -990,6 +973,3 @@ require 'nav_top.php';
 <?php
 require 'footer.php';
 ?>
-
-</body>
-</html>

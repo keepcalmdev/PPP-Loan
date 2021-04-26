@@ -8,6 +8,17 @@ html {
   text-align: center;
 }
 
+#second,
+#second-b,
+#response,
+#third,
+#final,
+#submitme,
+#first 
+{
+  display: none;
+}
+
 #schedule-f,
 #ppp-1,
 #schedule-c {

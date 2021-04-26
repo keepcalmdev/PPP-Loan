@@ -9,18 +9,6 @@
   </script>
   <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" >
   </script>
-  <style type="text/css" media="screen">
-    #second,
-    #second-b,
-    #response,
-    #third,
-    #final,
-    #submitme,
-    #first 
-    {
-      display: none;
-    }
-  </style>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
@@ -50,4 +38,3 @@
       </form>
     </div>
   </nav>
-</body>
